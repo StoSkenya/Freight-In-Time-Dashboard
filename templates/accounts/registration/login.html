@@ -1,0 +1,38 @@
+{% extends '../../base.html' %}
+{% load static %}
+
+
+{% block content %}      
+
+{% load crispy_forms_tags %}
+<div class="container">
+  <!--Login--> 
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+      <div class="text-center mb-3">
+        <div class="container py-5">
+          <img src="{% static 'assets/img/freight-in-time-logo-Edit.gif'%}"/>
+          <br>
+          <br>
+          <h3>F.I.T LOGIN QUOTELOG DASHBOARD</h3>
+          <br>
+          <form method="POST">
+            {% csrf_token %}
+            {{ login_form|crispy }}
+            <br>
+            <br>
+            <button class="btn btn-primary" type="submit">Login</button>
+          </form>
+          <br>
+          <br>
+          <div class="container py-5">
+            <h4>If you dont have an account please signup</h4>
+            <a href="{% url 'signup' %}"> <button>Signup</button> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

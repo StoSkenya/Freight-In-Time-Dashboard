@@ -1,0 +1,661 @@
+{% extends '../base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<br>
+<div class="container-fluid">
+    <!-- Content -->
+    <div class="row">
+      <a href="{% url 'logs:view_ql' %}" class="mb-3"><button type="button" class="btn btn-dark btn-lg">back</button></a>
+   
+    </div>
+    <div class="p-2" style="border: 2px solid rgb(17, 57, 186);font-weight:600px; border-radius: 10px;">
+      <!-- create many rows with with four columns  -->
+      {% if user.profile.designation == 'PRICING' or user.profile.designation == 'SALES' %}
+        <h1 style="text-align:center;color:rgb(51, 51, 255)">{{user.profile.office}} CREATE QUOTE LOG</h1>
+        <hr>
+        <form action="" method="post">
+          {% csrf_token %}
+    
+          <!-- form errors -->
+          <div>
+            {% if form.errors %}
+              <div class="alert alert-danger">
+                Kindly Check the Form for Errors
+              </div>
+            {%endif%}
+          </div>
+          <!-- end form errors alert -->
+          <!-- row 1 -->
+          <div class="row" >
+            <!-- office -->
+            <div class="col-md-4 border-right ">
+              <div class="form-group">
+                <label for="office" >Current office</label>
+                <input type="text" class="form-control" value="{{user.profile.office}}" disabled>
+                <input type="hidden" name="office" id="office" class="form-control" value="{{user.profile.office}}" >
+                <!-- show errors -->
+                {% if form.errors.office %}
+                  {%for e in form.errors.office %}
+                  <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 1.  quarter -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="quarter">2. Select the Quarter</label>
+                <select class="form-control" name="quarter" id="quarter">
+                  {% for i in form.quarter %}
+                    {{i}}
+                  {% endfor %}
+                </select>
+                <!-- show errors -->
+                {% if form.errors.quarter %}
+                {%for e in form.errors.quarter %}
+                  <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 2. quote_ref_no -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="quote_ref_no">3.Quote Ref No(FIT NO.)</label>
+                <input type="text" class="form-control" name="quote_ref_no" id="quote_ref_no" readonly="readonly">
+                <!-- show errors -->
+                {% if form.errors.quote_ref_no %}
+                  {%for e in form.errors.quote_ref_no %}
+                    <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+              </div>
+    
+            </div>
+          </div>
+    
+          <!-- row 2 -->
+          <div class="row" >
+    
+            <!-- 4.week -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="week">4.Select week</label>
+                <select class="form-control js-example-basic-single" name="week" id="week">
+                  {% for i in form.week %}
+                    {{i}}
+                  {% endfor %}
+                </select>
+                <!-- show errors -->
+                {% if form.errors.week %}
+                {%for e in form.errors.week %}
+                <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 5.business_type -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="business_type">5.Select Business Type</label>
+                <select class="form-control js-example-basic-single" name="business_type" id="business_type">
+                  {% for i in form.business_type %}
+                  {{i}}
+                  {% endfor %}
+                </select>
+                <!-- show errors -->
+                {% if form.errors.business_type %}
+                {%for e in form.errors.business_type %}
+                <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 6.freight_mode -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="freight_mode">6.Select Freight Mode</label>
+                <select class="form-control js-example-basic-single" name="freight_mode" id="freight_mode">
+                  {% for i in form.freight_mode %}
+                  {{i}}
+                  {% endfor %}
+                </select>
+                <!-- show errors -->
+                {% if form.errors.freight_mode %}
+                {%for e in form.errors.freight_mode %}
+                <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- dont touch this div -->
+          </div>
+    
+          <!-- row 3 -->
+          <div class="row">
+    
+            <!-- 7.request_type  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="request_type">7.Select Request type</label>
+                <select class="form-control js-example-basic-single" name="request_type" id="request_type">
+                  {% for i in form.request_type %}
+                  {{i}}
+                  {% endfor %}
+                </select>
+                <!-- show errors -->
+                {% if form.errors.request_type %}
+                {%for e in form.errors.request_type %}
+                <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+    
+              </div>
+            </div>
+    
+            <!-- 8.nature_of_service_requested  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="nature_of_service_requested">8.Nature of Service Requested</label>
+                <select class="form-control js-example-basic-single" name="nature_of_service_requested" id="nature_of_service_requested">
+                  {% for i in form.nature_of_service_requested %}
+                  {{i}}
+                  {% endfor %}
+                </select>
+                <!-- show errors -->
+                {% if form.errors.nature_of_service_requested %}
+                {%for e in form.errors.nature_of_service_requested %}
+                <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 9.origin_country  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="origin_country">9.Origin Country</label>
+                <select class="form-control js-example-basic-single origin_country" name="origin_country" id="origin_country" >
+                  {% for i in form.origin_country %}
+                  {{i}}
+                  {% endfor %}
+                </select>
+                <!-- show errors -->
+                {% if form.errors.origin_country %}
+                {%for e in form.errors.origin_country %}
+                <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+          </div>
+    
+          <!-- row 4 -->
+          <div class="row" >
+            <!-- 10.origin_port_airpot  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="origin_port_airpot">10.Select origin Port/Airpot</label>
+                <select class="form-control js-example-basic-single" name="origin_port_airpot" id="origin_port_airpot">
+                  <option value=" "></option>
+                </select>
+                <!-- show errors -->
+                {% if form.errors.origin_port_airpot %}
+                  {%for e in form.errors.origin_port_airpot %}
+                    <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+    
+              </div>
+            </div>
+    
+            <!-- 11.destination_country  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="destination_country">11. Destination Country</label>
+                <select class="form-control js-example-basic-single" name="destination_country" id="destination_country">
+                  {% for i in form.destination_country %}
+                    {{i}}
+                  {% endfor %}
+                </select>
+                <!-- show errors -->
+                {% if form.errors.destination_country %}
+                  {%for e in form.errors.destination_country %}
+                    <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 12.destination_port_aiport  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="destination_port_aiport">12. Destination Port/Aiport</label>
+                <select class="form-control js-example-basic-single" name="destination_port_aiport" id="destination_port_aiport"> -->
+                  <option value=" "></option>
+                </select>
+                <!-- show errors -->
+                {% if form.errors.destination_port_aiport %}
+                  {%for e in form.errors.destination_port_aiport %}
+                    <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+    
+          <!-- row 5 -->
+          <div class="row" >
+            <!-- 13.cargo_description  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="cargo_description">13. cargo_description</label>
+                <select class="form-control js-example-basic-single" name="cargo_description" id="cargo_description">
+                  {% for i in form.cargo_description %}
+                  {{i}}
+                  {% endfor %}
+                </select>
+                <!-- show errors -->
+                {% if form.errors.cargo_description %}
+                {%for e in form.errors.cargo_description %}
+                  <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 14.volume_unit  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="volume_unit">14. Volume unit</label>
+                <select class="form-control js-example-basic-single" name="volume_unit" id="volume_unit">
+                  {% for i in form.volume_unit %}
+                  {{i}}
+                  {% endfor %}
+                </select>
+                <!-- show errors -->
+                {% if form.errors.volume_unit %}
+                {%for e in form.errors.volume_unit %}
+                <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 15.volume_amount  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="volume_amount">15. Volume amount</label>
+                <input class="form-control" type="text" id="volume_amount" name="volume_amount" value="{{ form.volume_amount.value|default_if_none:'' }}">
+                <!-- show errors -->
+                {% if form.errors.volume_amount %}
+                  {%for e in form.errors.volume_amount %}
+                    <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+          </div>
+    
+          <!-- row 6 -->
+          <div class="row" >
+            <!-- 16.carrier  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="carrier">16. Carrier name(if known)</label>
+                <input class="form-control" type="text" name="carrier" id="carrier" value="{{ form.carrier.value|default_if_none:'' }}">
+                <!-- show errors -->
+                {% if form.errors.carrier %}
+                {%for e in form.errors.carrier %}
+                <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 17.total_buy_rate  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="total_buy_rate">17. Total Buy Rate</label>
+                <input class="form-control" type="number" id="total_buy_rate" name="total_buy_rate" value="{{ form.total_buy_rate.value|default_if_none:'' }}" >
+                <!-- show errors -->
+                {% if form.errors.total_buy_rate %}
+                  {%for e in form.errors.total_buy_rate %}
+                    <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 18.volume_amount  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="client_quote_sell_rate">18. Client quote sell rate</label>
+                <input class="form-control" type="number" id="client_quote_sell_rate" name="client_quote_sell_rate" value="{{ form.client_quote_sell_rate.value|default_if_none:'' }}">
+                <!-- show errors -->
+                {% if form.errors.client_quote_sell_rate %}
+                  {%for e in form.errors.client_quote_sell_rate %}
+                    <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+          </div>
+    
+          <!-- row 7 -->
+          <div class="row">
+            <!-- 19.absolute_profit  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="absolute_profit">19. absolute_profit </label>
+                <input class="form-control" type="number" name="absolute_profit" id="absolute_profit" value="{{form.absolute_profit.absolute_profit}}">
+                <!-- show errors -->
+                {% if form.errors.absolute_profit %}
+                {%for e in form.errors.absolute_profit %}
+                <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 20.percentage_profit  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="percentage_profit">20. Percentage profit</label>
+                <input class="form-control" type="number" step="any" id="percentage_profit" name="percentage_profit" value="{{form.percentage_profit.percentage_profit}}">
+                <!-- show errors -->
+                {% if form.errors.percentage_profit %}
+                {%for e in form.errors.percentage_profit %}
+                <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 21.email_subject  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="email_subject">21. email_subject</label>
+                <textarea class="form-control" id="email_subject" rows="5" name="email_subject" >{{form.data.email_subject}}</textarea>
+                <!-- show errors -->
+                {% if form.errors.email_subject %}
+                {%for e in form.errors.email_subject %}
+                <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+          </div>
+    
+          <!-- row 8 -->
+          <div class="row">
+    
+            <!-- 22.date_of_reciept_of_request  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="date_of_reciept_of_request">22.Date of Reciept of Request </label><br>
+                {{ form.date_of_reciept_of_request }}
+                <!-- show errors -->
+                {% if form.errors.date_of_reciept_of_request %}
+                  {%for e in form.errors.date_of_reciept_of_request %}
+                  <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 23.date_of_reply_to_client  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="date_of_reply_to_client">23.Date of Reply to Client </label><br>
+                {{ form.date_of_reply_to_client }}
+                <!-- show errors -->
+                {% if form.errors.date_of_reply_to_client %}
+                  {%for e in form.errors.date_of_reply_to_client %}
+                  <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 21.name_of_sales_person  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="name_of_sales_person">24. Name of sales person</label>
+                <input class="form-control" type="text" name="name_of_sales_person" id="name_of_sales_person" value="{{form.name_of_sales_person.name_of_sales_person}}">
+                <!-- show errors -->
+                {% if form.errors.name_of_sales_person %}
+                  {%for e in form.errors.name_of_sales_person %}
+                  <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+          </div>
+    
+          <!-- row 9 -->
+          <div class="row">
+            <!-- 25.quote_sent_by  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="quote_sent_by">25.quote_sent_by </label>
+                <input class="form-control" type="text" name="quote_sent_by" id="quote_sent_by" value="{{ form.quote_sent_by.value|default_if_none:'' }}">
+                <!-- show errors -->
+                {% if form.errors.quote_sent_by %}
+                  {%for e in form.errors.quote_sent_by %}
+                    <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 26.quotation_status  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="quotation_status">26.quotation_status</label>
+                <select class="form-control js-example-basic-single" name="quotation_status" id="quotation_status">
+                  {% for i in form.quotation_status %}
+                  {{i}}
+                  {% endfor %}
+                </select>
+                <!-- show errors -->
+                {% if form.errors.quotation_status %}
+                  {%for e in form.errors.quotation_status %}
+                  <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+            <!-- 27.feedback_remarks  -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="feedback_remarks">27. Feedback/Remarks </label>
+                <textarea class="form-control" id="feedback_remarks" rows="5" name="feedback_remarks">{{form.data.feedback_remarks}}</textarea>
+                <p><small style="color:rgb(247, 12, 12);">(Include reason for business loss)</small></p>
+                <!-- show errors -->
+                {% if form.errors.feedback_remarks %}
+                {%for e in form.errors.feedback_remarks %}
+                <small class="text-danger">{{e}}</small>
+                {%endfor%}
+                {% endif %}
+              </div>
+            </div>
+    
+          </div>
+    
+          <!-- submit btn -->
+          <!-- {{ form }} -->
+          <div class="row">
+            <div class="col-md-4">
+              <button class="btn btn-primary" type="submit" id="submit_ql">Submit QuoteLog</button>
+            </div>
+          </div>
+          
+        </form>
+        <br>
+        <br>
+      {% elif user.profile.designation == 'MANAGEMENT' %}
+        <h3 style="color:red;">Unauthorized User</h3>
+      {% endif %}
+    
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+
+
+{% block domready %}
+  <!-- <script> -->
+  // <script>
+  // show country
+  $("select.origin_country").change(function () {
+    var selectedCountry = $(this).children("option:selected").val();
+  });
+
+  // enable search in select 
+  $('.js-example-basic-single').select2();
+
+  // profit calculator buy sell rate
+  $("#client_quote_sell_rate").on("keyup", function () {
+    var value = $(this).val();
+    var buy_rate = $("#total_buy_rate").val();
+
+    var profit = (value - buy_rate);
+
+    if (profit != 0) {
+      $("#absolute_profit").val(profit);
+    }
+
+    var perc_profit = ((profit / buy_rate) * 100).toFixed(2);
+
+    if (perc_profit != 0) {
+      $("#percentage_profit").val(perc_profit);
+    }
+
+  });
+
+  // profit calculator by buy rate
+  $("#total_buy_rate").on("keyup", function () {
+ 
+    var value = $(this).val();
+    var sell_rate = $("#client_quote_sell_rate").val();
+
+    var profit = (sell_rate - value);
+
+    if (profit != 0) {
+      $("#absolute_profit").val(profit);
+    }
+
+    var perc_profit = ((profit / sell_rate) * 100).toFixed(2);
+
+    if (perc_profit != 0) {
+      $("#percentage_profit").val(perc_profit);
+    }
+  });
+
+  // origin country append select ports and airports locods
+  $('#origin_country').change(function(){
+    var country_ref;
+    country_ref = $(this).val();
+    $.ajax(
+    {
+      type: "GET",
+      url: "/logs/codes/"+country_ref,
+      dataType: 'json',
+      success: function (res) {
+        // store responses in localStorage
+        const myRes = JSON.stringify(res);
+        localStorage.setItem("new_Res", myRes);
+        // get from localStorage
+        let newRes = JSON.parse(localStorage.getItem("new_Res"));
+        
+        $("#origin_port_airpot").empty();
+        $.each(newRes['countries'],function(key,value){
+          $("#origin_port_airpot").append('<option value=' +value + '>' + value + '</option>');
+        });
+
+      }
+    })
+  });
+
+  // Destination country append select ports and airports locodes
+  $('#destination_country').on('change',function(){
+    var country_ref;
+    country_ref = $(this).val();
+    $.ajax(
+    {
+      type: "GET",
+      url: "/logs/codes/"+country_ref,
+      dataType: 'json',
+      success: function (res) {
+        $("#destination_port_aiport").empty();
+        $.each(res['countries'],function(key,value){
+          $("#destination_port_aiport").append('<option value=' + value + '>' + value + '</option>');
+        });
+
+      }
+    })
+  });
+
+
+  // Ajax req. for sum of quotes done
+  // add +1 as an increment and create a new Quoteref
+  $(function(){
+    $.ajax(
+      {
+        type: "GET",
+        url: "{% url 'sumquotes' %}",
+        dataType: 'json',
+        success: function (res) {
+          var last_id_intcrement = 1;
+          var new_index = res['q_id'] + last_id_intcrement;
+          // empty as a qref might have been saved and may require to be 
+          // recreated.
+          $('#quote_ref_no').empty();// empty any prev item
+          // save the newly created quoteref.
+          $('#quote_ref_no').val("{{user.profile.country}}/"+new_index+"/" + {% now "Y" %});
+          
+        }
+      }
+    )
+    
+  });
+
+  // Restricts data selection by user
+  $(function(){
+    var dtToday = new Date();
+    // get todays month-day-year
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+
+    if(month < 10)
+      month = '0' + month.toString();
+
+    if(day < 10)
+      day = '0' + day.toString();
+
+    // the max date a user can select can not be greater than today.
+    var maxDate = year + '-' + month + '-' + day;    
+    $('#id_date_of_reciept_of_request').attr('max', maxDate);
+    //$('#id_date_of_reply_to_client').attr('max', maxDate);
+  });
+
+
+
+{% endblock %}

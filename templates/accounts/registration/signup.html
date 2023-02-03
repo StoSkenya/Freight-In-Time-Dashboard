@@ -1,0 +1,19 @@
+{% extends '../../base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100"></div>
+        <h1>Create an account</h1>
+        <h3>F.I.T QUOTELOG DASHBOARD</h3>
+        <p>Please, sign up using the following form:</p>
+        <form method="post">
+            {{ user_form|crispy}}
+            {% csrf_token %}
+            <p><input class="btn btn-primary" type="submit" value="Create my account"></p>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

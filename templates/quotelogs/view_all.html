@@ -1,0 +1,177 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block styling %}
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/v/dt/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/datatables.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/datatables.min.js"></script>
+
+{% endblock %}
+
+<!-- <script> -->
+{% block domready %}
+$('#myTable').DataTable( {
+dom: 'Bfrtip',
+lengthMenu: [
+[ 10, 25, 50, -1 ],
+[ '10 rows', '25 rows', '50 rows', 'Show all' ]
+],
+buttons: [
+'pageLength','csv', 'excel'
+]
+} );
+{% endblock domready %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<br>
+<h3 style="text-align:center;">VIEW ALL QUOTE LOGS {{user.profile.office}}</h3>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'home' %}"><button type="button" class="btn btn-primary btn-lg"
+                    style="align-items:center;">Back Home</button></a>
+            <a href="{% url 'logs:create_ql' %}"><button type="button" class="btn btn-dark btn-lg"
+                    style="align-items:center;">Create QuoteLog</button></a>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="containter-fluid">
+    <div class="row">
+        {% if object_list %}
+        <div class="p-2">
+            <div class="col-12" style="overflow-x:auto;">
+            <table id="myTable" class="table table-sm table-bordered" style="width:100%">
+                <thead class="table-dark">
+                    <tr>
+                        <!-- <th scope="col">index</th> -->
+                        <th scope="col">1.Current Office</th>
+                        <th scope="col">2.Quarter</th>
+                        <th scope="col">3.Quote ref no</th>
+                        <th scope="col">4.Week</th>
+                        <th scope="col">5.Business type</th>
+                        <th scope="col">6.Freight mode</th>
+                        <th scope="col">7.Request type</th>
+                        <th scope="col">8.Nature of service requested</th>
+                        <th scope="col">9.Origin Country</th>
+                        <th scope="col">10.Origin port/airpot</th>
+                        <th scope="col">11.Destination country</th>
+                        <th scope="col">12.Destination port/aiport</th>
+                        <th scope="col">13.Cargo description</th>
+                        <th scope="col">14.Volume unit</th>
+                        <th scope="col">15.Volume amount</th>
+                        <th scope="col">16.Carrier(if known)</th>
+                        <th scope="col">17.Total buy rate</th>
+                        <th scope="col">18.Client quote sell rate</th>
+                        <th scope="col">19.Absolute profit</th>
+                        <th scope="col">20.Percentage profit</th>
+                        <th scope="col">21.Email subject</th>
+                        <th scope="col">22.Date of reciept of request</th>
+                        <th scope="col">23.Date of reply to client</th>
+                        <th scope="col">24.Name of sales person</th>
+                        <th scope="col">25.Quote sent by</th>
+                        <th scope="col">26.Quotation status</th>
+                        <th scope="col">27.Feedback remarks</th>
+
+                        <!-- dont touch -->
+                        {% if user.profile.designation == 'PRICING' or user.profile.designation == 'SALES' %}
+                        <th scope="col">Update</th>
+                        {% endif %}
+                        <th scope="col">view</th>
+                    </tr>
+                </thead>
+                <tbody style="font-weight:600px;">
+                    {% for i in object_list %}
+                    {% if user.profile.office == i.office %}
+                    <tr>
+                        <!-- <td>{{ i.id }}</td> -->
+                        <td>{{ i.office }}</td>
+                        <td>{{ i.quarter }}</td>
+                        <td>{{ i.quote_ref_no }}</td>
+                        <td>{{ i.week }}</td>
+                        <td>{{ i.business_type }}</td>
+                        <td>{{ i.freight_mode }}</td>
+                        <td>{{ i.request_type }}</td>
+                        <td>{{ i.nature_of_service_requested }}</td>
+                        <td>{{ i.origin_country }}</td>
+                        <td>{{ i.origin_port_airpot }}</td>
+                        <td>{{ i.destination_country }}</td>
+                        <td>{{ i.destination_port_aiport }}</td>
+                        <td>{{ i.cargo_description }}</td>
+                        <td>{{ i.volume_unit }}</td>
+                        <td>{{ i.volume_amount }}</td>
+                        <td>{{ i.carrier }}</td>
+                        <td>{{ i.total_buy_rate }}</td>
+                        <td>{{ i.client_quote_sell_rate }}</td>
+                        <td>{{ i.absolute_profit }}</td>
+                        <td>{{ i.percentage_profit }}</td>
+                        <td>{{ i.email_subject|truncatechars:20 }}</td>
+                        <td>{{ i.date_of_reciept_of_request }}</td>
+                        <td>{{ i.date_of_reply_to_client }}</td>
+                        <td>{{ i.name_of_sales_person }}</td>
+                        <td>{{ i.quote_sent_by }}</td>
+                        {% if i.quotation_status == 'PENDING' %}
+                        <td class="table-warning">{{ i.quotation_status }}</td>
+                        {% elif i.quotation_status == 'SENT' %}
+                        <td class="table-secondary">{{ i.quotation_status }}</td>
+                        {% elif i.quotation_status == 'WON' %}
+                        <td class="table-success">{{ i.quotation_status }}</td>
+                        {% elif i.quotation_status == 'LOST' %}
+                        <td class="table-danger">{{ i.quotation_status }}</td>
+                        {% else %}
+                        <td>{{ i.quotation_status }}</td>
+                        {% endif %}
+                        <td>{{ i.feedback_remarks|truncatechars:20 }}</td>
+                        {% if user.profile.designation == 'PRICING' or user.profile.designation == 'SALES' %}
+                        <!-- dont touch -->
+                        <td><a href="{% url 'logs:update_ql' i.id %}"><button type="button"
+                                    class="btn btn-success">Update</button></a></td>
+                        {% endif %}
+                        <td><a href="{% url 'logs:detialed_ql' i.id %}"><button type="button"
+                                    class="btn btn-info">view</button></a></td>
+                    </tr>
+                    {% endif %}
+
+                    {% endfor %}
+
+                </tbody>
+            </table>
+            </div>
+        </div>
+       
+        {% else %}
+        <div class="col-12">
+            <div class="alert alert-warning" role="alert">
+                There is no product, yet. But you can add a ql <a class="badge badge-info"
+                    href="{% url 'logs:create_ql' %}"><strong>here.</strong></a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+</div>
+
+
+{% endblock content %}

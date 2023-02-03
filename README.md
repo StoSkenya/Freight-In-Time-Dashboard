@@ -13,6 +13,10 @@
         name: fit_dashboard
         password: wpeimemcw_345+)
 
+        ---- management ----
+        email                       password
+        test_manager1@fit.com       saja3224we2
+
     2. Nairobi Office users
         email                       password
         test_nairobi1@fit.com       saja3224

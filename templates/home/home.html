@@ -71,7 +71,7 @@
                             </li>
                         {% elif user.profile.designation == 'MANAGEMENT' %}
                             <li class="menu-item">
-                                <a href="" class="menu-link"><button type="button" class="btn btn-info">View all</button></a> 
+                                <a href="{% url 'logs:view_ql' %}" class="menu-link"><button type="button" class="btn btn-info">View all</button></a> 
                             </li>
                         {% endif %}
                     </ul>

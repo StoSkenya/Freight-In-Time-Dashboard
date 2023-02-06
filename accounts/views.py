@@ -77,9 +77,14 @@ def user_login(request):
             user = authenticate(username=email, password=password)
             if user is not None:
                 login(request, user)
+                print(request.user.profile.designation)
                 messages.success(request, 'Your profile was updated.')
                 messages.info(request, f"You are now logged in as {email}.")
-                return redirect("home")
+                if request.user.profile.designation != 'MANAGEMENT':
+                    return redirect("home")
+                else:
+                    return redirect('management')
+
             else:
                 messages.error(request, "Invalid username or password.")
     else:
@@ -105,6 +110,18 @@ def create_profile(request):
 def home(request):
     context = {} 
     return render(request, 'home/home.html',context )
+
+
+@login_required(login_url='login')
+def management(request):
+    # this will be home page for management
+
+    # get all quotelogs
+    context = {}
+
+    # 
+
+    return render(request=request,template_name='home/home_management.html',context=context)
 
 
 # logout

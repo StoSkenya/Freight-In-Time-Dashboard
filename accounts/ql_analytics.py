@@ -80,11 +80,11 @@ class QLAnalytics:
         # shape of data
         if type(df) == bool:
             if df == True:
-                print("is bool")
+                # print("is bool")
                 return shape
         else:
             if type(df) != bool:
-                print(df)
+                # print(df)
                 new_df = df
                 _shape = int(new_df.shape[0])
                 if _shape >= 0:

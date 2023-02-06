@@ -11,7 +11,7 @@
         <!-- Menu -->
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
-                <a href="{% url 'home' %}" class="app-brand-link">
+                <a href="{% url 'management' %}" class="app-brand-link">
                     <span class="app-brand-text demo menu-text fw-bolder ms-2">F.I.T</span>
                 </a>
 
@@ -25,13 +25,11 @@
             <ul class="menu-inner py-1">
                 <!-- Dashboard -->
                 <li class="menu-item">
-                    <a href="{% url 'home' %}" class="menu-link">
+                    <a href="{% url 'management' %}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">Dashboard</div>
                     </a>
                 </li>
-
-                {% if user.profile.designation == 'MANAGEMENT' %}
                 <!-- Analytics list  -->
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -57,8 +55,7 @@
                     </ul>
                 </li>
                 <!-- end analytics -->
-                {% endif %}
-
+                
                 <!-- Quotelogs options -->
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -67,11 +64,9 @@
                     </a>
 
                     <ul class="menu-sub">
-                        {% if user.profile.designation == 'MANAGEMENT' %}
-                            <li class="menu-item">
-                                <a href="{% url 'logs:view_ql' %}" class="menu-link"><button type="button" class="btn btn-info">View all</button></a> 
-                            </li>
-                        {% endif %}
+                        <li class="menu-item">
+                            <a href="{% url 'logs:view_ql' %}" class="menu-link"><button type="button" class="btn btn-info">View all</button></a> 
+                        </li>
                     </ul>
 
                 </li>
@@ -140,144 +135,21 @@
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
-                {% block content_2 %}
-                    <div class="container-xxl flex-grow-1 container-p-y">
-                        <div class="row">
-                            <!-- Begin Page Content -->
-                            <div class="container-fluid">
-                                {% if user.profile.designation == 'PRICING' or user.profile.designation == 'SALES' %}
-                                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                        <h1>{{user.profile.office}} QUOTATION SUMMARY {% now 'Y' %} </h1>
-                                    </div>
-                                    <hr class="mt-5 mb-5">
-                                    <!-- Content Row cards of won/lost/quotes -->
-                                    <div class="row">
-                                        <!-- won quotes Card Example -->
-                                        <div class="col-xl-3 col-md-6 mb-4">
-                                            <div class="card border-left-success shadow h-100 py-2">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                                <h2 style="color:green;">Won quotes</h2>
-                                                            </div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                                <h3>{{value_counts.WON}}</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Pending Quotes Card Example -->
-                                        <div class="col-xl-3 col-md-6 mb-4">
-                                            <div class="card border-left-warning shadow h-100 py-2">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                                <h2>Pending Quotes</h2>
-                                                            </div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                                <h3> {{value_counts.PENDING}}</h3>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Lost Quotes Card Example -->
-                                        <div class="col-xl-3 col-md-6 mb-4">
-                                            <div class="card border-left-warning shadow h-100 py-2">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold .text-danger text-uppercase mb-1">
-                                                                <h2 style="color:red;">Lost Quotes</h2>
-                                                            </div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                                <h3>{{value_counts.LOST}}</h3>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Sent Quotes Card Example -->
-                                        <div class="col-xl-3 col-md-6 mb-4">
-                                            <div class="card border-left-warning shadow h-100 py-2">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold .text-danger text-uppercase mb-1">
-                                                                <h2 style="color:rgb(0, 4, 255);">SENT QUOTES</h2>
-                                                            </div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                                <h3>{{value_counts.SENT}}</h3>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Content Row2 cards of won/lost/quotes -->
-                                    <div class="row">
-                                        <!-- Avrg days before reply to Client Card Example -->
-                                        <div class="col-xl-3 col-md-6 mb-4">
-                                            <div class="card border-left-warning shadow h-100 py-2">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold .text-danger text-uppercase mb-1">
-                                                                <h3 style="color:rgb(74, 47, 0);">Reply days</h3>
-                                                            </div>
-                                                            <br>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                                <h4>{{value_counts.datesDiff}} days</h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Content graph -->
-                                    <div class="">
-                                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                            <h1>{{user.profile.office}} PROFIT SUMMARY {% now 'Y' %} </h1>
-                                        </div>
-                                        <div class="" style="width: 300px; height: 300px;">
-                                            <canvas id="myChart" width="100" height="100"></canvas>
-                                        </div>
-                                    </div>
-                                    <!-- endgraph -->
-
-                                {% elif user.profile.designation == 'MANAGEMENT' %}
-                                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                        <h1> Branch Quotation Summaries {% now 'Y' %} </h1>
-                                    </div>
-                                    <br>
-                                    <br>
-                                    <div class="row" id="bold_txt">
-                                    </div>
-
-                                    <hr class="mt-5 mb-5">
-                                    
-                                {% endif %}
-
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="row">
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1> Branch Quotation Summaries {% now 'Y' %} </h1>
                             </div>
+                            <br>
+                            <br>
+                            <div class="row" id="bold_txt">
+                            </div>
+                            <hr class="mt-5 mb-5">
                         </div>
                     </div>
-                {% endblock %}
+                </div>
                 <!-- / Content -->
                 <!-- Footer -->
                 <footer class="content-footer footer bg-footer-theme">
@@ -317,66 +189,28 @@
         // adding classname 'active' to current click li 
         $(this).addClass("active"); 
     });
+
     
-    
+    // for management
+    // Display quote counts of all offices
     $(function() {
-        // generate random colors
-        var dynamicColors = function() {
-        var r = Math.floor(Math.random() * 255);
-        var g = Math.floor(Math.random() * 255);
-        var b = Math.floor(Math.random() * 255);
-        return "rgb(" + r + "," + g + "," + b + ")";
-    };
-    
-    var lenArray = {{value_counts.new_quaters|safe}}.length;
-    
-    var colorsArr = [],i=0;
-    for(i; i < lenArray; i++){ 
-        colorsArr.push(dynamicColors()); 
-    } 
-    var element = document.getElementById('myChart'); 
-    if (typeof(element) != 'undefined' && element != null)
-    {
+        // on load up
+        $.ajax(
+            {
+            type: "GET",
+            url: "/logs/countsmng",
+            dataType: 'json',
+            success: function (res) {
 
-        let ctx = element.getContext('2d');
+                $.each(res['basic_counts_by_office'], function(key,value){
 
-        var myChart = new Chart(ctx, { 
-            type: 'bar' , data: { labels: {{value_counts.new_quaters|safe}}, 
-            datasets: [{ label: '% profits by Quarter (Won Quotes)' , 
-            data: {{value_counts.new_profits}}, 
-            backgroundColor: colorsArr, borderWidth: 1 }] }, 
-            options: { 
-                scales: { 
-                    y: { 
-                        beginAtZero: true 
-                    } 
-                } 
-            } 
-        }); 
-    }
-    
-}); 
-    
-// for management
-// Display quote counts of all offices
-$(function() {
-    // on load up
-    $.ajax(
-        {
-        type: "GET",
-        url: "/logs/countsmng",
-        dataType: 'json',
-        success: function (res) {
-
-            $.each(res['basic_counts_by_office'], function(key,value){
-
-                $('#bold_txt').append("<div class='card col-md-4 col-sm-12 col-lg-3 m-1 pt-2 h3 font-weight-bold 'id='"+key.replace(" ","-")+"'>" + "<p>" + key +"</p>" + "</div>");
-                
-                for(var i in JSON.parse(JSON.stringify(value))){
-                    $('#'+key.replace(" ","-")).append("<div class='h5 mb-0 font-weight-bold text-gray-800'>" + "<p>" + i + ' : '+ JSON.parse(JSON.stringify(value))[i] +"</p>" + "</div>");
-                }
-            });
-        }
-    })
-});
+                    $('#bold_txt').append("<div class='card col-md-4 col-sm-12 col-lg-3 m-1 pt-2 h3 font-weight-bold 'id='"+key.replace(" ","-")+"'>" + "<p>" + key +"</p>" + "</div>");
+                    
+                    for(var i in JSON.parse(JSON.stringify(value))){
+                        $('#'+key.replace(" ","-")).append("<div class='h5 mb-0 font-weight-bold text-gray-800'>" + "<p>" + i + ' : '+ JSON.parse(JSON.stringify(value))[i] +"</p>" + "</div>");
+                    }
+                });
+            }
+        })
+    });
 {% endblock %}

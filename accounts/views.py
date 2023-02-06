@@ -62,9 +62,6 @@ def get_sum_quotes(request):
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 
-
-
-
 def user_login(request):
     """
         #  User login
@@ -77,12 +74,16 @@ def user_login(request):
             user = authenticate(username=email, password=password)
             if user is not None:
                 login(request, user)
-                print(request.user.profile.designation)
-                messages.success(request, 'Your profile was updated.')
-                messages.info(request, f"You are now logged in as {email}.")
+                
                 if request.user.profile.designation != 'MANAGEMENT':
+                    print(request.user.profile.designation)
+                    messages.success(request, 'Your profile was updated.')
+                    messages.info(request, f"You are now logged in as {email}.")
                     return redirect("home")
-                else:
+                if request.user.profile.designation == 'MANAGEMENT':
+                    print(request.user.profile.designation)
+                    messages.success(request, 'Your profile was updated.')
+                    messages.info(request, f"You are now logged in as {email}.")
                     return redirect('management')
 
             else:

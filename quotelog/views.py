@@ -123,7 +123,7 @@ class QLManagement_DetialView(ListView):
     # View all quotelogs by management for every office
     """ 
     model = QuoteLogdb
-    template_name = "quotelogs/management/management_viewall.html"
+    template_name = "quotelogs/management_viewall.html"
     
 class QuoteLogDetialView(DetailView):
     """

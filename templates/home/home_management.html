@@ -65,7 +65,7 @@
 
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="{% url 'logs:view_ql' %}" class="menu-link"><button type="button" class="btn btn-info">View all</button></a> 
+                            <a href="{% url 'logs:mng' %}" class="menu-link"><button type="button" class="btn btn-info">View all</button></a> 
                         </li>
                     </ul>
 
@@ -140,7 +140,7 @@
                         <!-- Begin Page Content -->
                         <div class="container-fluid">
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1> Branch Quotation Summaries {% now 'Y' %} </h1>
+                                <h1>F.I.T Branch Quotation Summaries {% now 'Y' %} </h1>
                             </div>
                             <br>
                             <br>
@@ -192,7 +192,8 @@
 
     
     // for management
-    // Display quote counts of all offices
+    // Display quote counts of all offices in terms of quotes
+    // won lost pending by the office
     $(function() {
         // on load up
         $.ajax(
@@ -203,11 +204,15 @@
             success: function (res) {
 
                 $.each(res['basic_counts_by_office'], function(key,value){
-
-                    $('#bold_txt').append("<div class='card col-md-4 col-sm-12 col-lg-3 m-1 pt-2 h3 font-weight-bold 'id='"+key.replace(" ","-")+"'>" + "<p>" + key +"</p>" + "</div>");
-                    
+                    // office i.e FIT NAIROBI
+                    $('#bold_txt').append(
+                        "<div class='card col-md-4 col-sm-12 col-lg-3 m-1 pt-2 font-weight-bold' id='" + key.replace(" ","-")+"'>" + "<h2 style='text-decoration: underline;'>" + key +"</h2>" + "</div>"
+                    );
+                    // Quotes done and its details i.e WON 6 LOST 12 ....
                     for(var i in JSON.parse(JSON.stringify(value))){
-                        $('#'+key.replace(" ","-")).append("<div class='h5 mb-0 font-weight-bold text-gray-800'>" + "<p>" + i + ' : '+ JSON.parse(JSON.stringify(value))[i] +"</p>" + "</div>");
+                        $('#'+key.replace(" ","-")).append(
+                            "<div class='h5 mb-0 font-weight-bold text-black-200'>" + "<h5>" + i + ' : '+ JSON.parse(JSON.stringify(value))[i] +"</h5>" + "</div>"
+                        );
                     }
                 });
             }

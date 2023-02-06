@@ -25,26 +25,14 @@
 
 {% endblock %}
 
-<!-- <script> -->
-{% block domready %}
-$('#myTable').DataTable( {
-dom: 'Bfrtip',
-lengthMenu: [
-[ 10, 25, 50, -1 ],
-[ '10 rows', '25 rows', '50 rows', 'Show all' ]
-],
-buttons: [
-'pageLength','csv', 'excel'
-]
-} );
-{% endblock domready %}
 
 {% block content %}
 {% load crispy_forms_tags %}
 <br>
+<br>
 <h3 style="text-align:center;">VIEW ALL QUOTE LOGS {{user.profile.office}}</h3>
 <hr>
-<div class="container">
+<div class="container-fuid">
     <div class="row">
         <div class="col">
             <a href="{% url 'home' %}"><button type="button" class="btn btn-primary btn-lg"
@@ -60,7 +48,7 @@ buttons: [
         {% if object_list %}
         <div class="p-2">
             <div class="col-12" style="overflow-x:auto;">
-            <table id="myTable" class="table table-sm table-bordered" style="width:100%">
+                <table id="myTable" class="table table-sm table-bordered" style="width:100%">
                 <thead class="table-dark">
                     <tr>
                         <!-- <th scope="col">index</th> -->
@@ -175,3 +163,19 @@ buttons: [
 
 
 {% endblock content %}
+
+
+{% block domready %}
+    // <script> 
+
+    $('#myTable').DataTable( {
+        dom: 'Bfrtip',
+        lengthMenu: [
+        [ 10, 25, 50, -1 ],
+        [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
+        buttons: [
+        'pageLength','csv', 'excel'
+        ]
+    } );
+{% endblock domready %}

@@ -1,6 +1,7 @@
 from pathlib import Path
 from decouple import config
 from dotenv import load_dotenv
+from django.core.management.utils import get_random_secret_key
 load_dotenv()
 
 import os
@@ -12,7 +13,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^)*ard@vfi24yd!wl=-w0x^@thg(4(4a#@wl%gx85pvfds*ryy'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

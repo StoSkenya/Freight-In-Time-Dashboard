@@ -37,7 +37,7 @@ def managementAnalytics(request):
     # get all win ratios by year
     context['Tot_win_ratios'] = zip(analytics.sum_win_ratio_by_yrs()['years'],analytics.sum_win_ratio_by_yrs()['ratios'])
     # print(context)
-    print(analytics.product_wr_by_yrs())
+    # print(analytics.product_wr_by_yrs())
     return render(request, 'quotelogs/management/winratios.html',context)
 
 

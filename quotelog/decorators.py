@@ -5,8 +5,8 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 
 from django.shortcuts import resolve_url
 from urllib.parse import urlparse
-from FITReports.settings import config
-import FITReports.settings as settings
+from fitdashboard.settings import config
+import fitdashboard.settings as settings
 import requests
 
 default_message = 'Unauthorised action.'

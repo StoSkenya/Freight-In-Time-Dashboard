@@ -4,9 +4,6 @@
     Enable logging of quotelogs ~ moving from excel to web-based form
 
 
-
-
-
 # Test Accounts:
     1. Superuser
         email: fit_dashboard@test.com

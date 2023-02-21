@@ -28,9 +28,6 @@
 
 
 
-# Progress
-    01/27/2023 -  Updated the db login, signup works 
-        TODO: quotelogs app
+# Links
 
-    01/30/2023 -  Updated the db login, signup works 
-        TODO: quotelogs app
+[DjangoSeeding](https://medium.com/@ardho/migration-and-seeding-in-django-3ae322952111)

@@ -14,9 +14,8 @@ from pathlib import Path
 from decouple import config
 from django.core.management.utils import get_random_secret_key
 import os
-import environ
-env = environ.Env()
-environ.Env.read_env()
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -83,7 +82,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'fitdashboard.wsgi.application'
 
 # settings by env file
-if env('DEV') == "False":
+if os.environ['DEV'] == "False":
     print("We are in testing")
     # Database
     # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -94,11 +93,13 @@ if env('DEV') == "False":
             'NAME':os.path.join(BASE_DIR ,'db.sqlite3'),
         }
     }
-
+else:
+    # use development db
+    pass
         
 
 
-if env('DEV') == "True":
+if os.environ['DEV'] == "True":
     # set dev values for db and static
     print("We are in develompent!")
     

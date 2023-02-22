@@ -110,7 +110,22 @@ def create_profile(request):
 @login_required(login_url='login')
 def home(request):
     context = {} 
-    return render(request, 'home/home.html',context )
+     # get current logged in user data
+    context['current_user'] = request.user 
+
+    # get all db data
+    ql_mdl = qdb.objects.all()
+
+    # instanciate our analaytics data
+    analytics_cls = QLAnalytics(request.user.profile.office,ql_mdl)
+
+    # management data
+    # print(request.user.profile.designation)
+
+    # save analytics data in value counts
+    context['value_counts'] = analytics_cls.val_counts()
+
+    return render(request, 'home/home_normal.html',context )
 
 
 @login_required(login_url='login')

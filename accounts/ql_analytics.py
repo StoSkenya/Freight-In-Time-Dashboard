@@ -1,6 +1,6 @@
 import pandas as pd
 from statistics import mean, mode
-
+import numpy as np
 from quotelog.models import QuoteLogdb as qdb
 
 

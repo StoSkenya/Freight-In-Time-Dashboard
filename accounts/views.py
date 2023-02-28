@@ -131,12 +131,7 @@ def home(request):
 @login_required(login_url='login')
 def management(request):
     # this will be home page for management
-
-    # get all quotelogs
-    context = {}
-
-    # 
-
+    context={}
     return render(request=request,template_name='home/home_management.html',context=context)
 
 

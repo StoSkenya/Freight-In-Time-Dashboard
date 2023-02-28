@@ -3,7 +3,7 @@ from django.urls import path
 
 
 from .views import (quotelog_create,QuoteLogListView,update_quotelogs,QuoteLogDetialView,\
-    get_codes,QLManagement_DetialView,managementAnalytics,countsmanagement,\
+    get_codes,QLManagement_DetialView,sum_win_ratio_by_yrs,countsmanagement,\
     biztype_winratio_API
 )
 
@@ -14,7 +14,8 @@ urlpatterns = [
     path('mng/', login_required(QLManagement_DetialView.as_view()),name='mng'), 
     path('update_ql/<int:id>',update_quotelogs,name='update_ql'),  # update a quote log by id
     path('codes/<str:country>', get_codes,name='get_codes'),  # update a quote log by id
-    path('countsmain',managementAnalytics,name='countsmain'),
+    
+    path('yr_win_ratio',sum_win_ratio_by_yrs,name='yr_win_ratio'),
     path('countsmng',countsmanagement,name='countsmng'),
     # winratios
     path('bizratioapi',biztype_winratio_API,name='bizratioapi'),

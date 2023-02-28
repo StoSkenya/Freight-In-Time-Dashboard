@@ -24,7 +24,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 @login_required(login_url='login')
-def managementAnalytics(request):
+def sum_win_ratio_by_yrs(request):
     # query
     context = {}
     user = request.user  
@@ -38,7 +38,7 @@ def managementAnalytics(request):
     context['Tot_win_ratios'] = zip(analytics.sum_win_ratio_by_yrs()['years'],analytics.sum_win_ratio_by_yrs()['ratios'])
     # print(context)
     # print(analytics.product_wr_by_yrs())
-    return render(request, 'quotelogs/management/winratios.html',context)
+    return render(request, 'analytics/winratios.html',context)
 
 
 @login_required(login_url='login')
@@ -111,26 +111,6 @@ def quotelog_create(request):
     return render(request, "quotelogs/create.html", context)
 
 
-class QuoteLogListView(ListView):
-    """
-    # View Quotelogs by office
-    """ 
-    model = QuoteLogdb
-    template_name = "quotelogs/view_all.html"
-
-class QLManagement_DetialView(ListView):
-    """
-    # View all quotelogs by management for every office
-    """ 
-    model = QuoteLogdb
-    template_name = "quotelogs/management_viewall.html"
-    
-class QuoteLogDetialView(DetailView):
-    """
-    """ 
-    model = QuoteLogdb
-    template_name = "quotelogs/detail_view.html"
-
 @login_required(login_url='login')
 def update_quotelogs(request,id):
     # dictionary for initial data with
@@ -155,6 +135,28 @@ def update_quotelogs(request,id):
     context["form"] = form
  
     return render(request, "quotelogs/update.html", context)
+
+
+
+class QuoteLogListView(ListView):
+    """
+    # View Quotelogs by office
+    """ 
+    model = QuoteLogdb
+    template_name = "quotelogs/view_all.html"
+
+class QLManagement_DetialView(ListView):
+    """
+    # View all quotelogs by management for every office
+    """ 
+    model = QuoteLogdb
+    template_name = "quotelogs/management_viewall.html"
+    
+class QuoteLogDetialView(DetailView):
+    """
+    """ 
+    model = QuoteLogdb
+    template_name = "quotelogs/detail_view.html"
 
 
 

@@ -1,0 +1,46 @@
+{% extends '../base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <div class="col-xs-1" align="center">
+        <br>
+    <br>
+    <br>
+    <h1 class="display-1">Win Ratios By Year Totals F.I.T</h1>
+    <br>
+    <br>
+    
+    <hr>
+    <table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                <th>Years</th>
+                <th>% WIN RATIO</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+
+                {% for a,b in Tot_win_ratios %}
+                <tr>
+                    <td>{{a}}</td>
+                    <td>{{b}}%</td>
+                </tr>
+                {% endfor %}
+
+            
+        </tbody>
+    </table>
+    </div>
+</div>
+   
+{% endblock %}
+
+
+{% block domready %}
+
+{% endblock %}

@@ -311,6 +311,7 @@
         colorsArr.push(dynamicColors()); 
     } 
     var element = document.getElementById('myChart'); 
+    
     if (typeof(element) != 'undefined' && element != null)
     {
 
@@ -333,26 +334,5 @@
     
 }); 
     
-// for management
-// Display quote counts of all offices
-$(function() {
-    // on load up
-    $.ajax(
-        {
-        type: "GET",
-        url: "/logs/countsmng",
-        dataType: 'json',
-        success: function (res) {
 
-            $.each(res['basic_counts_by_office'], function(key,value){
-
-                $('#bold_txt').append("<div class='card col-md-4 col-sm-12 col-lg-3 m-1 pt-2 h3 font-weight-bold 'id='"+key.replace(" ","-")+"'>" + "<p>" + key +"</p>" + "</div>");
-                
-                for(var i in JSON.parse(JSON.stringify(value))){
-                    $('#'+key.replace(" ","-")).append("<div class='h5 mb-0 font-weight-bold text-gray-800'>" + "<p>" + i + ' : '+ JSON.parse(JSON.stringify(value))[i] +"</p>" + "</div>");
-                }
-            });
-        }
-    })
-});
 {% endblock %}

@@ -148,6 +148,8 @@ class Management:
         # new_df = new_df[['created_on','freight_mode']]  
         # final product 
         # print(new_df)
+        pass
+
     
     def business_type_wr_by_yrs(self):
         """

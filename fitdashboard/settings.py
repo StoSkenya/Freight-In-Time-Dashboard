@@ -88,12 +88,29 @@ if os.environ['DEV'] == "False":
     # Database
     # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-    DATABASES = {
+
+    # Swith to postgresql
+    if os.environ['DB'] == "PSQL":
+       DATABASES = {
+           
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': 'mydatabase',
+                'USER': 'mydatabaseuser',
+                'PASSWORD': 'mypassword',
+                'HOST': '127.0.0.1',
+                'PORT': '5432',
+            }
+        }
+    else:
+        # test db
+        DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME':os.path.join(BASE_DIR ,'db.sqlite3'),
         }
     }
+        
 else:
     # use development db
     pass

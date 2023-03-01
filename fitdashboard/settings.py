@@ -84,24 +84,25 @@ WSGI_APPLICATION = 'fitdashboard.wsgi.application'
 
 # settings by env file
 if os.environ['DEV'] == "False":
-    print("We are in testing")
     # Database
     # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-
-    # Swith to postgresql
-    if os.environ['DB'] == "PSQL":
-       DATABASES = {
-           
+    # Swith to postgresql-local
+    if os.environ['DB'] == "PSQL":        
+        passwrd = os.environ["POSTGRESQL_PSWRD"]
+        # print(passwrd)
+        DATABASES = {
+            
             'default': {
                 'ENGINE': 'django.db.backends.postgresql',
-                'NAME': 'mydatabase',
-                'USER': 'mydatabaseuser' ,
-                'PASSWORD': '%s' % quote_plus(os.environ["POSTGRESQL_PSWRD"]),
+                'NAME': 'FreightInTime_db_',
+                'USER': 'postgres' ,
+                'PASSWORD': f'{passwrd}' ,
                 'HOST': '127.0.0.1',
                 'PORT': '5432',
             }
         }
+        print("We are in testing")
     else:
         # test db
         DATABASES = {

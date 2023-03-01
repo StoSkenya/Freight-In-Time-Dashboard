@@ -112,10 +112,6 @@ if os.environ['DEV'] == "False":
         }
     }
         
-else:
-    # use development db
-    pass
-        
 
 
 if os.environ['DEV'] == "True":

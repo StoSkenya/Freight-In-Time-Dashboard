@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+from urllib.parse import quote_plus
 from pathlib import Path
 from decouple import config
 from django.core.management.utils import get_random_secret_key
@@ -96,8 +96,8 @@ if os.environ['DEV'] == "False":
             'default': {
                 'ENGINE': 'django.db.backends.postgresql',
                 'NAME': 'mydatabase',
-                'USER': 'mydatabaseuser',
-                'PASSWORD': 'mypassword',
+                'USER': 'mydatabaseuser' ,
+                'PASSWORD': '%s' % quote_plus(os.environ["POSTGRESQL_PSWRD"]),
                 'HOST': '127.0.0.1',
                 'PORT': '5432',
             }

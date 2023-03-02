@@ -16,4 +16,5 @@ class CreateQuoteLogForm(ModelForm):
         widgets = {
             'date_of_reciept_of_request': DateInput(),
             'date_of_reply_to_client': DateInput(),
+            'date_of_quote_won_loss': DateInput(),
         }

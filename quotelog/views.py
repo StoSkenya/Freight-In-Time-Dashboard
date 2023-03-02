@@ -14,7 +14,7 @@ from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 
 from .forms import CreateQuoteLogForm
-from .models import QuoteLogdb
+from .models import QuoteLogdb,CreatedBy
 from .analyics import Locodes,Management
 
 import json
@@ -22,6 +22,90 @@ from django.http import HttpResponse
 
 
 # Create your views here.
+@login_required(login_url='login')
+def quotelog_create(request):
+    """
+        # Create QuoeLogs from form
+
+    """
+
+    context = {}
+
+    form = CreateQuoteLogForm(request.POST or None)
+    # # check if form data is valid
+    if form.is_valid():
+        # save the form data to model
+        form.save()
+        messages.success(request, 'Form submission successful')
+        # redirect to another page with success message
+        # return HttpResponse('Success')
+        return redirect('logs:view_ql')
+    # return HttpResponseRedirect(request.path_info)
+    # redirect to detail view
+    
+         
+    context['form'] = form
+
+    context['ls'] = ['ke', 'ug']
+
+    return render(request, "quotelogs/create.html", context)
+
+
+@login_required(login_url='login')
+def update_quotelogs(request,id):
+    # dictionary for initial data with
+    # field names as keys
+    context ={}
+ 
+    # fetch the object related to passed id
+    obj = get_object_or_404(QuoteLogdb, id = id)
+ 
+    # pass the object as instance in form
+    form = CreateQuoteLogForm(request.POST or None, instance = obj)
+ 
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'QuoteLog update successful')
+        return redirect('logs:view_ql')
+        # return reverse_lazy('quotelogs:view_quotelogs')
+ 
+    # add form dictionary to context
+    context["form"] = form
+ 
+    return render(request, "quotelogs/update.html", context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @login_required(login_url='login')
 def sum_win_ratio_by_yrs(request):
@@ -85,56 +169,6 @@ def get_codes(request, country):
     # print(context)
     return HttpResponse(json.dumps(context), content_type="application/json")
 
-@login_required(login_url='login')
-def quotelog_create(request):
-    context = {}
-
-    form = CreateQuoteLogForm(request.POST or None)
-    # # check if form data is valid
-    if form.is_valid():
-        # get data
-        
-        # save the form data to model
-        form.save()
-        messages.success(request, 'Form submission successful')
-        # redirect to another page with success message
-        # return HttpResponse('Success')
-        return redirect('logs:view_ql')
-    # return HttpResponseRedirect(request.path_info)
-    # redirect to detail view
-    
-         
-    context['form'] = form
-
-    context['ls'] = ['ke', 'ug']
-
-    return render(request, "quotelogs/create.html", context)
-
-
-@login_required(login_url='login')
-def update_quotelogs(request,id):
-    # dictionary for initial data with
-    # field names as keys
-    context ={}
- 
-    # fetch the object related to passed id
-    obj = get_object_or_404(QuoteLogdb, id = id)
- 
-    # pass the object as instance in form
-    form = CreateQuoteLogForm(request.POST or None, instance = obj)
- 
-    # save the data from the form and
-    # redirect to detail_view
-    if form.is_valid():
-        form.save()
-        messages.success(request, 'QuoteLog update successful')
-        return redirect('logs:view_ql')
-        # return reverse_lazy('quotelogs:view_quotelogs')
- 
-    # add form dictionary to context
-    context["form"] = form
- 
-    return render(request, "quotelogs/update.html", context)
 
 
 

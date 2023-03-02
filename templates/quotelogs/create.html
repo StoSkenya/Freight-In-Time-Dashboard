@@ -5,14 +5,14 @@
 <br>
 <div class="container-fluid">
     <!-- Content -->
-    <div class="row">
+    <div class="align-items-center">
       <a href="{% url 'logs:view_ql' %}" class="mb-3"><button type="button" class="btn btn-dark btn-lg">back</button></a>
-   
     </div>
-    <div class="p-2" style="border: 2px solid rgb(17, 57, 186);font-weight:600px; border-radius: 10px;">
+    <br>
+    <div class="mx-auto p-4 d-grid gap-3 align-items-center" style="border: 2px solid rgb(17, 57, 186);border-radius: 10px;">
       <!-- create many rows with with four columns  -->
       {% if user.profile.designation == 'PRICING' or user.profile.designation == 'SALES' %}
-        <h1 style="text-align:center;color:rgb(51, 51, 255)">{{user.profile.office}} CREATE QUOTE LOG</h1>
+        <h1 style="color:rgb(51, 51, 255)">{{user.profile.office}} CREATE QUOTE LOG</h1>
         <hr>
         <form action="" method="post">
           {% csrf_token %}
@@ -28,8 +28,9 @@
           <!-- end form errors alert -->
           <!-- row 1 -->
           <div class="row" >
+
             <!-- office -->
-            <div class="col-md-4 border-right ">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="office" >Current office</label>
                 <input type="text" class="form-control" value="{{user.profile.office}}" disabled>
@@ -42,9 +43,24 @@
                 {% endif %}
               </div>
             </div>
+
+            <!-- created_by -->
+            <div class="col-md-12" >
+              <div class="form-group">
+                <label for="created_by" >CreatedBy</label>
+                <input type="text" class="form-control" value="{{user.FITUser.email}}" disabled>
+                <input type="hidden" name="created_by" id="created_by" class="form-control" value="{{user.FITUser.email}}" >
+                <!-- show errors -->
+                {% if form.errors.created_by %}
+                  {% for e in form.errors.created_by %}
+                    <small class="text-danger">{{e}}</small>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
     
             <!-- 1.  quarter -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="quarter">2. Select the Quarter</label>
                 <select class="form-control" name="quarter" id="quarter">
@@ -62,7 +78,7 @@
             </div>
     
             <!-- 2. quote_ref_no -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="quote_ref_no">3.Quote Ref No(FIT NO.)</label>
                 <input type="text" class="form-control" name="quote_ref_no" id="quote_ref_no" readonly="readonly">
@@ -81,7 +97,7 @@
           <div class="row" >
     
             <!-- 4.week -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="week">4.Select week</label>
                 <select class="form-control js-example-basic-single" name="week" id="week">
@@ -99,7 +115,7 @@
             </div>
     
             <!-- 5.business_type -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="business_type">5.Select Business Type</label>
                 <select class="form-control js-example-basic-single" name="business_type" id="business_type">
@@ -117,7 +133,7 @@
             </div>
     
             <!-- 6.freight_mode -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="freight_mode">6.Select Freight Mode</label>
                 <select class="form-control js-example-basic-single" name="freight_mode" id="freight_mode">
@@ -141,7 +157,7 @@
           <div class="row">
     
             <!-- 7.request_type  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="request_type">7.Select Request type</label>
                 <select class="form-control js-example-basic-single" name="request_type" id="request_type">
@@ -160,7 +176,7 @@
             </div>
     
             <!-- 8.nature_of_service_requested  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="nature_of_service_requested">8.Nature of Service Requested</label>
                 <select class="form-control js-example-basic-single" name="nature_of_service_requested" id="nature_of_service_requested">
@@ -178,7 +194,7 @@
             </div>
     
             <!-- 9.origin_country  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="origin_country">9.Origin Country</label>
                 <select class="form-control js-example-basic-single origin_country" name="origin_country" id="origin_country" >
@@ -200,9 +216,9 @@
           <!-- row 4 -->
           <div class="row" >
             <!-- 10.origin_port_airpot  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
-                <label for="origin_port_airpot">10.Select origin Port/Airpot</label>
+                <label for="origin_port_airpot">10.Select origin Port/Airport</label>
                 <select class="form-control js-example-basic-single" name="origin_port_airpot" id="origin_port_airpot">
                   <option value=" "></option>
                 </select>
@@ -217,7 +233,7 @@
             </div>
     
             <!-- 11.destination_country  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="destination_country">11. Destination Country</label>
                 <select class="form-control js-example-basic-single" name="destination_country" id="destination_country">
@@ -235,7 +251,7 @@
             </div>
     
             <!-- 12.destination_port_aiport  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="destination_port_aiport">12. Destination Port/Aiport</label>
                 <select class="form-control js-example-basic-single" name="destination_port_aiport" id="destination_port_aiport"> -->
@@ -254,7 +270,7 @@
           <!-- row 5 -->
           <div class="row" >
             <!-- 13.cargo_description  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="cargo_description">13. cargo_description</label>
                 <select class="form-control js-example-basic-single" name="cargo_description" id="cargo_description">
@@ -272,7 +288,7 @@
             </div>
     
             <!-- 14.volume_unit  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="volume_unit">14. Volume unit</label>
                 <select class="form-control js-example-basic-single" name="volume_unit" id="volume_unit">
@@ -290,7 +306,7 @@
             </div>
     
             <!-- 15.volume_amount  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="volume_amount">15. Volume amount</label>
                 <input class="form-control" type="text" id="volume_amount" name="volume_amount" value="{{ form.volume_amount.value|default_if_none:'' }}">
@@ -308,7 +324,7 @@
           <!-- row 6 -->
           <div class="row" >
             <!-- 16.carrier  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="carrier">16. Carrier name(if known)</label>
                 <input class="form-control" type="text" name="carrier" id="carrier" value="{{ form.carrier.value|default_if_none:'' }}">
@@ -322,7 +338,7 @@
             </div>
     
             <!-- 17.total_buy_rate  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="total_buy_rate">17. Total Buy Rate</label>
                 <input class="form-control" type="number" id="total_buy_rate" name="total_buy_rate" value="{{ form.total_buy_rate.value|default_if_none:'' }}" >
@@ -336,7 +352,7 @@
             </div>
     
             <!-- 18.volume_amount  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="client_quote_sell_rate">18. Client quote sell rate</label>
                 <input class="form-control" type="number" id="client_quote_sell_rate" name="client_quote_sell_rate" value="{{ form.client_quote_sell_rate.value|default_if_none:'' }}">
@@ -354,7 +370,7 @@
           <!-- row 7 -->
           <div class="row">
             <!-- 19.absolute_profit  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="absolute_profit">19. absolute_profit </label>
                 <input class="form-control" type="number" name="absolute_profit" id="absolute_profit" value="{{form.absolute_profit.absolute_profit}}">
@@ -368,7 +384,7 @@
             </div>
     
             <!-- 20.percentage_profit  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="percentage_profit">20. Percentage profit</label>
                 <input class="form-control" type="number" step="any" id="percentage_profit" name="percentage_profit" value="{{form.percentage_profit.percentage_profit}}">
@@ -382,7 +398,7 @@
             </div>
     
             <!-- 21.email_subject  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="email_subject">21. email_subject</label>
                 <textarea class="form-control" id="email_subject" rows="5" name="email_subject" >{{form.data.email_subject}}</textarea>
@@ -401,7 +417,7 @@
           <div class="row">
     
             <!-- 22.date_of_reciept_of_request  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="date_of_reciept_of_request">22.Date of Reciept of Request </label><br>
                 {{ form.date_of_reciept_of_request }}
@@ -415,7 +431,7 @@
             </div>
     
             <!-- 23.date_of_reply_to_client  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="date_of_reply_to_client">23.Date of Reply to Client </label><br>
                 {{ form.date_of_reply_to_client }}
@@ -427,9 +443,23 @@
                 {% endif %}
               </div>
             </div>
+
+            <!-- 23.date_of_reply_to_client  -->
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="date_of_quote_won_loss">23.Date of Quote/Won/Loss </label><br>
+                {{ form.date_of_quote_won_loss }}
+                <!-- show errors -->
+                {% if form.errors.date_of_quote_won_loss %}
+                  {%for e in form.errors.date_of_quote_won_loss %}
+                  <small class="text-danger">{{e}}</small>
+                  {%endfor%}
+                {% endif %}
+              </div>
+            </div>
     
             <!-- 21.name_of_sales_person  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="name_of_sales_person">24. Name of sales person</label>
                 <input class="form-control" type="text" name="name_of_sales_person" id="name_of_sales_person" value="{{form.name_of_sales_person.name_of_sales_person}}">
@@ -447,7 +477,7 @@
           <!-- row 9 -->
           <div class="row">
             <!-- 25.quote_sent_by  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="quote_sent_by">25.quote_sent_by </label>
                 <input class="form-control" type="text" name="quote_sent_by" id="quote_sent_by" value="{{ form.quote_sent_by.value|default_if_none:'' }}">
@@ -461,7 +491,7 @@
             </div>
     
             <!-- 26.quotation_status  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="quotation_status">26.quotation_status</label>
                 <select class="form-control js-example-basic-single" name="quotation_status" id="quotation_status">
@@ -479,7 +509,7 @@
             </div>
     
             <!-- 27.feedback_remarks  -->
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="feedback_remarks">27. Feedback/Remarks </label>
                 <textarea class="form-control" id="feedback_remarks" rows="5" name="feedback_remarks">{{form.data.feedback_remarks}}</textarea>
@@ -498,7 +528,7 @@
           <!-- submit btn -->
           <!-- {{ form }} -->
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
               <button class="btn btn-primary" type="submit" id="submit_ql">Submit QuoteLog</button>
             </div>
           </div>
@@ -612,6 +642,25 @@
     })
   });
 
+  // Restricts data selection by user
+  $(function(){
+    var dtToday = new Date();
+    // get todays month-day-year
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+
+    if(month < 10)
+      month = '0' + month.toString();
+
+    if(day < 10)
+      day = '0' + day.toString();
+
+    // the max date a user can select can not be greater than today.
+    var maxDate = year + '-' + month + '-' + day;    
+    $('#id_date_of_reciept_of_request').attr('max', maxDate);
+    //$('#id_date_of_reply_to_client').attr('max', maxDate);
+  });
 
   // Ajax req. for sum of quotes done
   // add +1 as an increment and create a new Quoteref
@@ -636,26 +685,7 @@
     
   });
 
-  // Restricts data selection by user
-  $(function(){
-    var dtToday = new Date();
-    // get todays month-day-year
-    var month = dtToday.getMonth() + 1;
-    var day = dtToday.getDate();
-    var year = dtToday.getFullYear();
-
-    if(month < 10)
-      month = '0' + month.toString();
-
-    if(day < 10)
-      day = '0' + day.toString();
-
-    // the max date a user can select can not be greater than today.
-    var maxDate = year + '-' + month + '-' + day;    
-    $('#id_date_of_reciept_of_request').attr('max', maxDate);
-    //$('#id_date_of_reply_to_client').attr('max', maxDate);
-  });
-
+  //ioioi
 
 
 {% endblock %}

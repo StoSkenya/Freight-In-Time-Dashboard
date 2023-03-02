@@ -2,7 +2,10 @@ from django.db import models
 from accounts.models import Profile
 from django_countries.fields import CountryField
 
+from .accounts.models import FITUser,Profile
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 import datetime
 year = datetime.date.today().year
@@ -13,7 +16,7 @@ year = datetime.date.today().year
 
 # --------------- FORM FILL FIELDS
 OFFCIE_CHOICE  = (
-    ('FIT NAIROBI','FIT NAIROBI'),
+    ('FIT KENYA','FIT KENYA'),
     ('FIT UGANDA','FIT UGANDA'),
     ('FIT TANZANIA','FIT TANZANIA'),
     ('FIT RWANDA','FIT RWANDA'),
@@ -61,7 +64,6 @@ FREIGHT_MODE_TYPE_CHOICE = (
     ('Warehousing', 'Warehousing'),
 )
 
-
 REQ_TYPE_CHOICE = (
     ('Import', 'Import'),
     ('Export', 'Export'),
@@ -98,14 +100,13 @@ QUOTATION_STATUS_CHOICE = (
 
 
 # --------------------------------
-
-
 class QuoteLogdb(models.Model):
     """
         # Model for quotelogs summary
     """
     
     office = models.CharField(max_length=100)
+    created_by = models.CharField(max_length=200,blank=True)
     # ------------ QUOTELOG Columns
     # 1.  quarter
     quarter = models.CharField(max_length=200,choices=QUOTER_CHOICE)
@@ -174,16 +175,19 @@ class QuoteLogdb(models.Model):
     # 22. date_of_reply_to_client (date pick)
     date_of_reply_to_client = models.DateField()
 
-    # 23. name_of_sales_person (if request from sales team)
+    # 23. date_of_quote_won_loss
+    date_of_quote_won_loss = models.DateField(blank=True)
+
+    # 24. name_of_sales_person (if request from sales team)
     name_of_sales_person = models.CharField(max_length=200,default="", blank = True, null=True)
 
-    # 24. quote_sent_by
+    # 25. quote_sent_by
     quote_sent_by = models.CharField(max_length=100)
 
-    # 25. quotation status
+    # 26. quotation status
     quotation_status = models.CharField(max_length=20,choices=QUOTATION_STATUS_CHOICE)
 
-    # 26. feedback_remarks (include reasons why business was lost)
+    # 27. feedback_remarks (include reasons why business was lost)
     feedback_remarks = models.TextField()
 
     created_on = models.DateField(auto_now_add=True)

@@ -14,7 +14,7 @@ from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 
 from .forms import CreateQuoteLogForm
-from .models import QuoteLogdb,CreatedBy
+from .models import QuoteLogdb
 from .analyics import Locodes,Management
 
 import json

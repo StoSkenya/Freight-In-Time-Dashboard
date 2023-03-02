@@ -101,6 +101,7 @@ class QuoteLogdb(models.Model):
     
     office = models.CharField(max_length=100)
     created_by = models.CharField(max_length=200,blank=True)
+    
     # ------------ QUOTELOG Columns
     # 1.  quarter
     quarter = models.CharField(max_length=200,choices=QUOTER_CHOICE)

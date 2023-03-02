@@ -76,31 +76,26 @@ def update_quotelogs(request,id):
  
     return render(request, "quotelogs/update.html", context)
 
+# views
+class QuoteLogListView(ListView):
+    """
+        # View Quotelogs by office
+    """ 
+    model = QuoteLogdb
+    template_name = "quotelogs/view_all.html"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class QLManagement_DetialView(ListView):
+    """
+        # View all quotelogs by management for every office
+    """ 
+    model = QuoteLogdb
+    template_name = "quotelogs/management_viewall.html"
+    
+class QuoteLogDetialView(DetailView):
+    """
+    """ 
+    model = QuoteLogdb
+    template_name = "quotelogs/detail_view.html"
 
 
 
@@ -172,25 +167,6 @@ def get_codes(request, country):
 
 
 
-class QuoteLogListView(ListView):
-    """
-    # View Quotelogs by office
-    """ 
-    model = QuoteLogdb
-    template_name = "quotelogs/view_all.html"
-
-class QLManagement_DetialView(ListView):
-    """
-    # View all quotelogs by management for every office
-    """ 
-    model = QuoteLogdb
-    template_name = "quotelogs/management_viewall.html"
-    
-class QuoteLogDetialView(DetailView):
-    """
-    """ 
-    model = QuoteLogdb
-    template_name = "quotelogs/detail_view.html"
 
 
 

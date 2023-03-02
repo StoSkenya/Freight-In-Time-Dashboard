@@ -1,12 +1,6 @@
 from django.db import models
 from accounts.models import Profile
 from django_countries.fields import CountryField
-
-from .accounts.models import FITUser,Profile
-
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-
 import datetime
 year = datetime.date.today().year
 

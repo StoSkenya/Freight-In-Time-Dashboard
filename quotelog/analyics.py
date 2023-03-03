@@ -45,8 +45,8 @@ class Management:
         self.ql_model_query = ql_model_query
         
         # Constants to be used all accross the code.
-        self.ofcs =  ['FIT NAIROBI','FIT UGANDA','FIT TANZANIA','FIT RWANDA','FIT ETHIOPIA','FIT SUDAN','FIT DJIBOUTI']
-        self.Q_S = ['SENT','WON','PENDING','LOST']
+        self.ofcs =  ['FIT KENYA','FIT UGANDA','FIT TANZANIA','FIT RWANDA','FIT ETHIOPIA','FIT SUDAN','FIT DJIBOUTI']
+        self.Q_S = ['Sent','Won','Pending','Lost']
         self.business_type = ['AGENT','NEW CUSTOMER','EXISTING CUSTOMER']
         self.products = []
         self.request_type = []
@@ -58,7 +58,7 @@ class Management:
     
     def basic_counts(self):
         """
-            # WON LOST PENDING ...
+            # Won LOST PENDING ...
         """
         df = self.management_data()
         # Get all offices
@@ -105,7 +105,7 @@ class Management:
         count_val_all_quotes = df.shape[0]
         df['created_on'] = pd.to_datetime(df['created_on']).dt.year
         # Get all won quotes
-        df = df[(df['quotation_status'] == 'WON')]
+        df = df[(df['quotation_status'] == 'Won')]
         # create new frame
         new_df = df[['created_on','freight_mode','request_type','business_type']]
         

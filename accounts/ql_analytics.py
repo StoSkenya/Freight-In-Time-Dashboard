@@ -34,7 +34,7 @@ class QLAnalytics:
     
     def val_counts(self):
         # Quotation Status
-        Q_S = ['SENT','WON','PENDING','LOST']
+        Q_S = ['Sent','Won','Pending','Lost']
 
         v_counts = {}
         
@@ -46,7 +46,7 @@ class QLAnalytics:
             current_df_qs = list(df["quotation_status"])
             # print(current_df_qs)
             for i in  current_df_qs:
-                if i == 'WON':
+                if i == 'Won':
                     df_won = df[df["quotation_status"] == i]
                     # print(df["quotation_status"])
                     v_counts['FreightModeWonQuotes'] = df_won['freight_mode'].value_counts().idxmax()

@@ -98,10 +98,6 @@ class QuoteLogDetialView(DetailView):
     template_name = "quotelogs/detail_view.html"
 
 
-
-
-
-
 @login_required(login_url='login')
 def sum_win_ratio_by_yrs(request):
     # query
@@ -120,6 +116,7 @@ def sum_win_ratio_by_yrs(request):
     return render(request, 'analytics/winratios.html',context)
 
 
+# api
 @login_required(login_url='login')
 def biztype_winratio_API(request):
     designation = request.user.profile.designation
@@ -132,7 +129,7 @@ def biztype_winratio_API(request):
         context = analytics.business_type_wr_by_yrs()
     return HttpResponse(json.dumps(context), content_type="application/json")
 
-
+# api
 # Get counts for all countries
 @login_required(login_url='login')
 def countsmanagement(request):
@@ -152,7 +149,7 @@ def countsmanagement(request):
     # main home page for users
     return HttpResponse(json.dumps(context), content_type="application/json")
 
-
+# api
 # get locodes by country
 @login_required(login_url='login')
 def get_codes(request, country):

@@ -45,21 +45,20 @@ def signup(request):
     return render(request, 'accounts/registration/signup.html', {'user_form': user_form})
 
 
-
 @login_required(login_url='login')
-def get_sum_quotes(request):
-    """
-        # Get a summation/number of quotes done by current logged in users office
-    """
-    context = {} 
-    ql_mdl = qdb.objects.all()
-    # print(ql_mdl)
-    analytics_cls = QLAnalytics(request.user.profile.office,ql_mdl)
-    # print(f"Office coount: {}")
-    
-    if request.method == 'GET':
-        context['q_id'] = int(analytics_cls.sum_office())
-    return HttpResponse(json.dumps(context), content_type="application/json")
+def create_profile(request):
+    if request.method == 'POST':
+        profile_form = ProfileForm(
+            instance=request.user.profile, data=request.POST)
+
+        if profile_form.is_valid():
+            # current_user = request.user
+            profile_form.save()
+            return redirect('home')
+    else:
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'accounts/registration/profile.html', {'profile_form': profile_form})
+
 
 
 def user_login(request):
@@ -93,19 +92,6 @@ def user_login(request):
         form = AuthenticationForm()
     return render(request=request, template_name="accounts/registration/login.html", context={"login_form": form})
 
-@login_required(login_url='login')
-def create_profile(request):
-    if request.method == 'POST':
-        profile_form = ProfileForm(
-            instance=request.user.profile, data=request.POST)
-
-        if profile_form.is_valid():
-            # current_user = request.user
-            profile_form.save()
-            return redirect('home')
-    else:
-        profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'accounts/registration/profile.html', {'profile_form': profile_form})
 
 @login_required(login_url='login')
 def home(request):
@@ -127,12 +113,28 @@ def home(request):
 
     return render(request, 'home/home_normal.html',context )
 
-
 @login_required(login_url='login')
 def management(request):
     # this will be home page for management
     context={}
     return render(request=request,template_name='home/home_management.html',context=context)
+
+
+# api
+@login_required(login_url='login')
+def get_sum_quotes(request):
+    """
+        # Get a summation/number of quotes done by current logged in users office
+    """
+    context = {} 
+    ql_mdl = qdb.objects.all()
+    # print(ql_mdl)
+    analytics_cls = QLAnalytics(request.user.profile.office,ql_mdl)
+    # print(f"Office coount: {}")
+    
+    if request.method == 'GET':
+        context['q_id'] = int(analytics_cls.sum_office())
+    return HttpResponse(json.dumps(context), content_type="application/json")
 
 
 # logout

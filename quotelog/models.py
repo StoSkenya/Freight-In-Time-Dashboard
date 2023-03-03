@@ -86,10 +86,10 @@ VOLUME_UNIT_CHOICE = (
 )
 
 QUOTATION_STATUS_CHOICE = (
-    ('Sent', 'Sent'),
-    ('Won', 'Won'),
-    ('Lost', 'Lost',),
-    ('Pending', 'Pending'),
+    ('SENT', 'SENT'),
+    ('WON', 'WON'),
+    ('LOST', 'LOST',),
+    ('PENDING', 'Pending'),
 )
 
 

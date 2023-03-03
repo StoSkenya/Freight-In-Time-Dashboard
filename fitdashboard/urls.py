@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('accounts.urls')),
     path('logs/',include(('quotelog.urls','logs'),namespace='logs')),
+    path('create_quote/',include(('createQuote.urls','create_quote'),namespace='create_quote'))
 ]
 
 

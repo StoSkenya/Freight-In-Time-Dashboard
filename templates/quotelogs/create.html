@@ -387,12 +387,12 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="percentage_profit">20. Percentage profit</label>
-                <input class="form-control" type="number" step="any" id="percentage_profit" name="percentage_profit" value="{{form.percentage_profit.percentage_profit}}">
+                <input class="form-control" type="number" min="1" max="100"  id="percentage_profit" name="percentage_profit" value="{{form.percentage_profit.percentage_profit}}">
                 <!-- show errors -->
                 {% if form.errors.percentage_profit %}
-                {%for e in form.errors.percentage_profit %}
-                <small class="text-danger">{{e}}</small>
-                {%endfor%}
+                  {% for e in form.errors.percentage_profit %}
+                    <small class="text-danger">{{e}}</small>
+                  {% endfor %}
                 {% endif %}
               </div>
             </div>

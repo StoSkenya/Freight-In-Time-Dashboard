@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_seed',
     'accounts',
-    'quotelog'
+    'quotelog',
+    'createQuote'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

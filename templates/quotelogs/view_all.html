@@ -19,20 +19,7 @@
     rel="stylesheet" />
 {% endblock %}
 
-{% block domready %}
-    // <script> 
 
-    $('#myTable').DataTable( {
-        dom: 'Bfrtip',
-        lengthMenu: [
-        [ 10, 25, 50, -1 ],
-        [ '10 rows', '25 rows', '50 rows', 'Show all' ]
-        ],
-        buttons: [
-        'pageLength','csv', 'excel'
-        ]
-    } );
-{% endblock domready %}
 
 {% block content %}
 {% load crispy_forms_tags %}
@@ -98,53 +85,55 @@
                 <tbody style="font-weight:600px;">
                     {% for i in object_list %}
                     {% if user.profile.office == i.office %}
-                    <tr>
-                        <!-- <td>{{ i.id }}</td> -->
-                        <td>{{ i.office }}</td>
-                        <td>{{ i.quarter }}</td>
-                        <td>{{ i.quote_ref_no }}</td>
-                        <td>{{ i.week }}</td>
-                        <td>{{ i.business_type }}</td>
-                        <td>{{ i.freight_mode }}</td>
-                        <td>{{ i.request_type }}</td>
-                        <td>{{ i.nature_of_service_requested }}</td>
-                        <td>{{ i.origin_country }}</td>
-                        <td>{{ i.origin_port_airpot }}</td>
-                        <td>{{ i.destination_country }}</td>
-                        <td>{{ i.destination_port_aiport }}</td>
-                        <td>{{ i.cargo_description }}</td>
-                        <td>{{ i.volume_unit }}</td>
-                        <td>{{ i.volume_amount }}</td>
-                        <td>{{ i.carrier }}</td>
-                        <td>{{ i.total_buy_rate }}</td>
-                        <td>{{ i.client_quote_sell_rate }}</td>
-                        <td>{{ i.absolute_profit }}</td>
-                        <td>{{ i.percentage_profit }}</td>
-                        <td>{{ i.email_subject|truncatechars:20 }}</td>
-                        <td>{{ i.date_of_reciept_of_request }}</td>
-                        <td>{{ i.date_of_reply_to_client }}</td>
-                        <td>{{ i.name_of_sales_person }}</td>
-                        <td>{{ i.quote_sent_by }}</td>
-                        {% if i.quotation_status == 'PENDING' %}
-                        <td class="table-warning">{{ i.quotation_status }}</td>
-                        {% elif i.quotation_status == 'SENT' %}
-                        <td class="table-secondary">{{ i.quotation_status }}</td>
-                        {% elif i.quotation_status == 'WON' %}
-                        <td class="table-success">{{ i.quotation_status }}</td>
-                        {% elif i.quotation_status == 'LOST' %}
-                        <td class="table-danger">{{ i.quotation_status }}</td>
-                        {% else %}
-                        <td>{{ i.quotation_status }}</td>
-                        {% endif %}
-                        <td>{{ i.feedback_remarks|truncatechars:20 }}</td>
-                        {% if user.profile.designation == 'PRICING' or user.profile.designation == 'SALES' %}
-                        <!-- dont touch -->
-                        <td><a href="{% url 'logs:update_ql' i.id %}"><button type="button"
-                                    class="btn btn-success">Update</button></a></td>
-                        {% endif %}
-                        <td><a href="{% url 'logs:detialed_ql' i.id %}"><button type="button"
-                                    class="btn btn-info">view</button></a></td>
-                    </tr>
+                        {% if i.office != 'test' %}
+                            <tr>
+                                <!-- <td>{{ i.id }}</td> -->
+                                <td>{{ i.office }}</td>
+                                <td>{{ i.quarter }}</td>
+                                <td>{{ i.quote_ref_no }}</td>
+                                <td>{{ i.week }}</td>
+                                <td>{{ i.business_type }}</td>
+                                <td>{{ i.freight_mode }}</td>
+                                <td>{{ i.request_type }}</td>
+                                <td>{{ i.nature_of_service_requested }}</td>
+                                <td>{{ i.origin_country }}</td>
+                                <td>{{ i.origin_port_airpot }}</td>
+                                <td>{{ i.destination_country }}</td>
+                                <td>{{ i.destination_port_aiport }}</td>
+                                <td>{{ i.cargo_description }}</td>
+                                <td>{{ i.volume_unit }}</td>
+                                <td>{{ i.volume_amount }}</td>
+                                <td>{{ i.carrier }}</td>
+                                <td>{{ i.total_buy_rate }}</td>
+                                <td>{{ i.client_quote_sell_rate }}</td>
+                                <td>{{ i.absolute_profit }}</td>
+                                <td>{{ i.percentage_profit }}</td>
+                                <td>{{ i.email_subject|truncatechars:20 }}</td>
+                                <td>{{ i.date_of_reciept_of_request }}</td>
+                                <td>{{ i.date_of_reply_to_client }}</td>
+                                <td>{{ i.name_of_sales_person }}</td>
+                                <td>{{ i.quote_sent_by }}</td>
+                                {% if i.quotation_status == 'PENDING' %}
+                                <td class="table-warning">{{ i.quotation_status }}</td>
+                                {% elif i.quotation_status == 'SENT' %}
+                                <td class="table-secondary">{{ i.quotation_status }}</td>
+                                {% elif i.quotation_status == 'WON' %}
+                                <td class="table-success">{{ i.quotation_status }}</td>
+                                {% elif i.quotation_status == 'LOST' %}
+                                <td class="table-danger">{{ i.quotation_status }}</td>
+                                {% else %}
+                                <td>{{ i.quotation_status }}</td>
+                                {% endif %}
+                                <td>{{ i.feedback_remarks|truncatechars:20 }}</td>
+                                {% if user.profile.designation == 'PRICING' or user.profile.designation == 'SALES' %}
+                                <!-- dont touch -->
+                                <td><a href="{% url 'logs:update_ql' i.id %}"><button type="button"
+                                            class="btn btn-success">Update</button></a></td>
+                                {% endif %}
+                                <td><a href="{% url 'logs:detialed_ql' i.id %}"><button type="button"
+                                            class="btn btn-info">view</button></a></td>
+                            </tr>
+                        {% endif %} 
                     {% endif %}
 
                     {% endfor %}
@@ -173,3 +162,17 @@
 {% endblock content %}
 
 
+{% block domready %}
+    // <script> 
+
+    $('#myTable').DataTable( {
+        dom: 'Bfrtip',
+        lengthMenu: [
+        [ 10, 25, 50, -1 ],
+        [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
+        buttons: [
+        'pageLength','csv', 'excel'
+        ]
+    } );
+{% endblock domready %}

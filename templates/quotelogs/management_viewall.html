@@ -96,6 +96,7 @@ $('#myTable').DataTable( {
                             </thead>
                             <tbody style="font-weight:600px;">
                                 {% for i in object_list %}
+                                    {% if i.office != 'test' %}
                                     <tr>
                                         <!-- <td>{{ i.id }}</td> -->
                                         <td>{{ i.office }}</td>
@@ -137,6 +138,7 @@ $('#myTable').DataTable( {
                                         <td>{{ i.feedback_remarks|truncatechars:20 }}</td>
                                         <td><a href="{% url 'logs:detialed_ql' i.id %}"><button type="button"class="btn btn-info">view</button></a></td>
                                     </tr>
+                                    {% endif %}
                                 {% endfor %}
 
                             </tbody>

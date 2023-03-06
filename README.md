@@ -21,6 +21,7 @@ $ git add . && git commit -m "update" && git push origin fit-development  && git
         name: fitdashboard
         gmail: fitdash@gmail.com
         pswrd: sdkwr_345362S2
+        
         (all) pswrd: 34sdkwr_345362S2
     
     - Kenya

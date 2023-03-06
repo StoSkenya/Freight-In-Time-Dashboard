@@ -19,7 +19,7 @@ class SignUpForm(UserCreationForm):
 
 class ProfileForm(forms.ModelForm):
     OFFICE_CHOICE_FIELD = (
-        ('FIT NAIROBI','FIT NAIROBI'),
+        ('FIT KENYA','FIT KENYA'),
         ('FIT UGANDA','FIT UGANDA'),
         ('FIT TANZANIA','FIT TANZANIA'),
         ('FIT RWANDA','FIT RWANDA'),

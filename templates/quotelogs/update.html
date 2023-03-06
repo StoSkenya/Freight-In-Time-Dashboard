@@ -28,52 +28,67 @@
         {%endif%}
       </div>
       <!-- end form errors alert -->
-
       <!-- row 1 -->
-      <div class="row">
+      <div class="row" >
+
         <!-- office -->
-        <div class="col-md-4 border-right ">
+        <div class="col-md-4 border-right">
           <div class="form-group">
-            <label for="office">Current office</label>
+            <label for="office" >Current office</label>
             <input type="text" class="form-control" value="{{user.profile.office}}" disabled>
             <input type="hidden" name="office" id="office" class="form-control" value="{{user.profile.office}}" >
             <!-- show errors -->
             {% if form.errors.office %}
-            {%for e in form.errors.office %}
-            <small class="text-danger">{{e}}</small>
-            {%endfor%}
+              {% for e in form.errors.office %}
+                <small class="text-danger">{{e}}</small>
+              {% endfor %}
             {% endif %}
           </div>
         </div>
 
-        <!-- 1. quater -->
-        <div class="col-md-4">
+        <!-- created_by -->
+        <div class="col-md-4 border-right" >
+          <div class="form-group">
+            <label for="created_by" >CreatedBy</label>
+            <input type="text" class="form-control" value="{{user.email}}" disabled>
+            <input type="hidden" name="created_by" id="created_by" class="form-control" value="{{user.email}}" >
+            <!-- show errors -->
+            {% if form.errors.created_by %}
+              {% for e in form.errors.created_by %}
+                <small class="text-danger">{{e}}</small>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- 1.  quarter -->
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="quarter">2. Select the Quarter</label>
-            <select class="form-control js-example-basic-single" name="quarter" id="quarter">
+            <select class="form-control" name="quarter" id="quarter">
               {% for i in form.quarter %}
-              {{i}}
+                {{i}}
               {% endfor %}
             </select>
             <!-- show errors -->
             {% if form.errors.quarter %}
             {%for e in form.errors.quarter %}
-            <small class="text-danger">{{e}}</small>
+              <small class="text-danger">{{e}}</small>
             {%endfor%}
             {% endif %}
           </div>
         </div>
 
         <!-- 2. quote_ref_no -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="quote_ref_no">3.Quote Ref No(FIT NO.)</label>
-            <input type="text" class="form-control" name="quote_ref_no" id="quote_ref_no" value="{{form.quote_ref_no.value}}" readonly="readonly">
+            <input type="text" class="form-control" name="quote_ref_no" id="quote_ref_no" readonly="readonly" value="{{form.quote_ref_no.value}}">
             <!-- show errors -->
             {% if form.errors.quote_ref_no %}
-            {%for e in form.errors.quote_ref_no %}
-            <small class="text-danger">{{e}}</small>
-            {%endfor%}
+              {%for e in form.errors.quote_ref_no %}
+                <small class="text-danger">{{e}}</small>
+              {%endfor%}
             {% endif %}
           </div>
 
@@ -81,10 +96,10 @@
       </div>
 
       <!-- row 2 -->
-      <div class="row">
+      <div class="row" >
 
         <!-- 4.week -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="week">4.Select week</label>
             <select class="form-control js-example-basic-single" name="week" id="week">
@@ -93,8 +108,8 @@
               {% endfor %}
             </select>
             <!-- show errors -->
-            {% if form.errors.quater %}
-            {%for e in form.errors.quater %}
+            {% if form.errors.week %}
+            {%for e in form.errors.week %}
             <small class="text-danger">{{e}}</small>
             {%endfor%}
             {% endif %}
@@ -102,7 +117,7 @@
         </div>
 
         <!-- 5.business_type -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="business_type">5.Select Business Type</label>
             <select class="form-control js-example-basic-single" name="business_type" id="business_type">
@@ -120,7 +135,7 @@
         </div>
 
         <!-- 6.freight_mode -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="freight_mode">6.Select Freight Mode</label>
             <select class="form-control js-example-basic-single" name="freight_mode" id="freight_mode">
@@ -144,7 +159,7 @@
       <div class="row">
 
         <!-- 7.request_type  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="request_type">7.Select Request type</label>
             <select class="form-control js-example-basic-single" name="request_type" id="request_type">
@@ -163,7 +178,7 @@
         </div>
 
         <!-- 8.nature_of_service_requested  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="nature_of_service_requested">8.Nature of Service Requested</label>
             <select class="form-control js-example-basic-single" name="nature_of_service_requested" id="nature_of_service_requested">
@@ -173,27 +188,27 @@
             </select>
             <!-- show errors -->
             {% if form.errors.nature_of_service_requested %}
-              {%for e in form.errors.nature_of_service_requested %}
-              <small class="text-danger">{{e}}</small>
-              {%endfor%}
+            {%for e in form.errors.nature_of_service_requested %}
+            <small class="text-danger">{{e}}</small>
+            {%endfor%}
             {% endif %}
           </div>
         </div>
 
         <!-- 9.origin_country  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="origin_country">9.Origin Country</label>
-            <select class="form-control js-example-basic-single" name="origin_country" id="origin_country">
+            <select class="form-control js-example-basic-single origin_country" name="origin_country" id="origin_country" >
               {% for i in form.origin_country %}
               {{i}}
               {% endfor %}
             </select>
             <!-- show errors -->
             {% if form.errors.origin_country %}
-              {%for e in form.errors.origin_country %}
-                <small class="text-danger">{{e}}</small>
-              {%endfor%}
+            {%for e in form.errors.origin_country %}
+            <small class="text-danger">{{e}}</small>
+            {%endfor%}
             {% endif %}
           </div>
         </div>
@@ -201,13 +216,13 @@
       </div>
 
       <!-- row 4 -->
-      <div class="row">
+      <div class="row" >
         <!-- 10.origin_port_airpot  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
-            <label for="origin_port_airpot">10.Select origin Port/Airpot</label>
-            <select class="form-control js-example-basic-single" name="origin_port_airpot" id="origin_port_airpot" >
-              <option value="{{form.origin_port_airpot.value}}">{{form.origin_port_airpot.value}}</option>
+            <label for="origin_port_airpot">10.Select origin Port/Airport</label>
+            <select class="form-control js-example-basic-single" name="origin_port_airpot" id="origin_port_airpot">
+              <option value=" ">{{form.origin_port_airpot.value}}</option>
             </select>
             <!-- show errors -->
             {% if form.errors.origin_port_airpot %}
@@ -220,44 +235,44 @@
         </div>
 
         <!-- 11.destination_country  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="destination_country">11. Destination Country</label>
             <select class="form-control js-example-basic-single" name="destination_country" id="destination_country">
               {% for i in form.destination_country %}
-              {{i}}
+                {{i}}
               {% endfor %}
             </select>
             <!-- show errors -->
             {% if form.errors.destination_country %}
-            {%for e in form.errors.destination_country %}
-            <small class="text-danger">{{e}}</small>
-            {%endfor%}
+              {%for e in form.errors.destination_country %}
+                <small class="text-danger">{{e}}</small>
+              {%endfor%}
             {% endif %}
           </div>
         </div>
 
         <!-- 12.destination_port_aiport  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="destination_port_aiport">12. Destination Port/Aiport</label>
-            <select class="form-control js-example-basic-single" name="destination_port_aiport" id="destination_port_aiport">
-              <option value="{{form.destination_port_aiport.value}}">{{form.destination_port_aiport.value}}</option>
+            <select class="form-control js-example-basic-single" name="destination_port_aiport" id="destination_port_aiport"> -->
+              <option value=" ">{{form.destination_port_aiport.value}}</option>
             </select>
             <!-- show errors -->
             {% if form.errors.destination_port_aiport %}
-            {%for e in form.errors.destination_port_aiport %}
-            <small class="text-danger">{{e}}</small>
-            {%endfor%}
+              {%for e in form.errors.destination_port_aiport %}
+                <small class="text-danger">{{e}}</small>
+              {%endfor%}
             {% endif %}
           </div>
         </div>
       </div>
 
       <!-- row 5 -->
-      <div class="row">
+      <div class="row" >
         <!-- 13.cargo_description  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="cargo_description">13. cargo_description</label>
             <select class="form-control js-example-basic-single" name="cargo_description" id="cargo_description">
@@ -268,14 +283,14 @@
             <!-- show errors -->
             {% if form.errors.cargo_description %}
             {%for e in form.errors.cargo_description %}
-            <small class="text-danger">{{e}}</small>
+              <small class="text-danger">{{e}}</small>
             {%endfor%}
             {% endif %}
           </div>
         </div>
 
         <!-- 14.volume_unit  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="volume_unit">14. Volume unit</label>
             <select class="form-control js-example-basic-single" name="volume_unit" id="volume_unit">
@@ -293,15 +308,15 @@
         </div>
 
         <!-- 15.volume_amount  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="volume_amount">15. Volume amount</label>
-            <input class="form-control" type="text" id="volume_amount" name="volume_amount" value="{{form.volume_amount.value}}">
+            <input class="form-control" type="text" id="volume_amount" name="volume_amount" value="{{ form.volume_amount.value|default_if_none:'' }}">
             <!-- show errors -->
             {% if form.errors.volume_amount %}
-            {%for e in form.errors.volume_amount %}
-            <small class="text-danger">{{e}}</small>
-            {%endfor%}
+              {%for e in form.errors.volume_amount %}
+                <small class="text-danger">{{e}}</small>
+              {%endfor%}
             {% endif %}
           </div>
         </div>
@@ -309,12 +324,12 @@
       </div>
 
       <!-- row 6 -->
-      <div class="row">
+      <div class="row" >
         <!-- 16.carrier  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="carrier">16. Carrier name(if known)</label>
-            <input class="form-control" type="text" name="carrier" id="carrier" value="{{form.carrier.value}}">
+            <input class="form-control" type="text" name="carrier" id="carrier" value="{{ form.carrier.value|default_if_none:'' }}">
             <!-- show errors -->
             {% if form.errors.carrier %}
             {%for e in form.errors.carrier %}
@@ -325,29 +340,29 @@
         </div>
 
         <!-- 17.total_buy_rate  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="total_buy_rate">17. Total Buy Rate</label>
-            <input class="form-control"type="number" id="total_buy_rate" name="total_buy_rate" value="{{form.total_buy_rate.value}}" >
+            <input class="form-control" type="number" id="total_buy_rate" name="total_buy_rate" value="{{ form.total_buy_rate.value|default_if_none:'' }}" >
             <!-- show errors -->
             {% if form.errors.total_buy_rate %}
-            {%for e in form.errors.total_buy_rate %}
-            <small class="text-danger">{{e}}</small>
-            {%endfor%}
+              {%for e in form.errors.total_buy_rate %}
+                <small class="text-danger">{{e}}</small>
+              {%endfor%}
             {% endif %}
           </div>
         </div>
 
         <!-- 18.volume_amount  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="client_quote_sell_rate">18. Client quote sell rate</label>
-            <input class="form-control" type="number" id="client_quote_sell_rate" name="client_quote_sell_rate" value="{{form.client_quote_sell_rate.value}}">
+            <input class="form-control" type="number" id="client_quote_sell_rate" name="client_quote_sell_rate" value="{{ form.client_quote_sell_rate.value|default_if_none:'' }}">
             <!-- show errors -->
             {% if form.errors.client_quote_sell_rate %}
-            {%for e in form.errors.client_quote_sell_rate %}
-            <small class="text-danger">{{e}}</small>
-            {%endfor%}
+              {%for e in form.errors.client_quote_sell_rate %}
+                <small class="text-danger">{{e}}</small>
+              {%endfor%}
             {% endif %}
           </div>
         </div>
@@ -357,7 +372,7 @@
       <!-- row 7 -->
       <div class="row">
         <!-- 19.absolute_profit  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="absolute_profit">19. absolute_profit </label>
             <input class="form-control" type="number" name="absolute_profit" id="absolute_profit" value="{{form.absolute_profit.value}}">
@@ -371,24 +386,24 @@
         </div>
 
         <!-- 20.percentage_profit  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="percentage_profit">20. Percentage profit</label>
-            <input class="form-control" type="text" id="percentage_profit" name="percentage_profit" value="{{form.percentage_profit.value}}">
+            <input class="form-control" type="text"  id="percentage_profit" name="percentage_profit" value="{{form.percentage_profit.value}}">
             <!-- show errors -->
             {% if form.errors.percentage_profit %}
-            {%for e in form.errors.percentage_profit %}
-            <small class="text-danger">{{e}}</small>
-            {%endfor%}
+              {% for e in form.errors.percentage_profit %}
+                <small class="text-danger">{{e}}</small>
+              {% endfor %}
             {% endif %}
           </div>
         </div>
 
         <!-- 21.email_subject  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="email_subject">21. email_subject</label>
-            <textarea class="form-control" id="email_subject" rows="5" name="email_subject">{{form.email_subject.value}}</textarea>
+            <textarea class="form-control" id="email_subject" rows="5" name="email_subject" >{{form.email_subject.value}}</textarea>
             <!-- show errors -->
             {% if form.errors.email_subject %}
             {%for e in form.errors.email_subject %}
@@ -402,10 +417,11 @@
 
       <!-- row 8 -->
       <div class="row">
+
         <!-- 22.date_of_reciept_of_request  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
-            <label for="date_of_reciept_of_request">22.Date of Reciept of Request </label>
+            <label for="date_of_reciept_of_request">22.Date of Reciept of Request </label><br>
             {{ form.date_of_reciept_of_request }}
             <!-- show errors -->
             {% if form.errors.date_of_reciept_of_request %}
@@ -416,10 +432,10 @@
           </div>
         </div>
 
-        <!-- 23.percentage_profit  -->
-        <div class="col-md-4">
+        <!-- 23.date_of_reply_to_client  -->
+        <div class="col-md-4 border-right">
           <div class="form-group">
-            <label for="date_of_reply_to_client">23. Date of Reply to Client</label>
+            <label for="date_of_reply_to_client">23.Date of Reply to Client </label><br>
             {{ form.date_of_reply_to_client }}
             <!-- show errors -->
             {% if form.errors.date_of_reply_to_client %}
@@ -430,11 +446,25 @@
           </div>
         </div>
 
+        <!-- 23.date_of_reply_to_client  -->
+        <div class="col-md-4 border-right">
+          <div class="form-group">
+            <label for="date_of_quote_won_loss">23.Date of Quote/Won/Loss </label><br>
+            {{ form.date_of_quote_won_loss }}
+            <!-- show errors -->
+            {% if form.errors.date_of_quote_won_loss %}
+              {%for e in form.errors.date_of_quote_won_loss %}
+              <small class="text-danger">{{e}}</small>
+              {%endfor%}
+            {% endif %}
+          </div>
+        </div>
+
         <!-- 21.name_of_sales_person  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="name_of_sales_person">24. Name of sales person</label>
-            <input class="form-control" type="text" name="name_of_sales_person" id="name_of_sales_person" value="{{form.percentage_profit.value}}">
+            <input class="form-control" type="text" name="name_of_sales_person" id="name_of_sales_person" value="{{form.name_of_sales_person.value}}">
             <!-- show errors -->
             {% if form.errors.name_of_sales_person %}
               {%for e in form.errors.name_of_sales_person %}
@@ -449,21 +479,21 @@
       <!-- row 9 -->
       <div class="row">
         <!-- 25.quote_sent_by  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="quote_sent_by">25.quote_sent_by </label>
-            <input class="form-control" type="text" name="quote_sent_by" id="quote_sent_by" value="{{form.quote_sent_by.value}}">
+            <input class="form-control" type="text" name="quote_sent_by" id="quote_sent_by" value="{{ form.quote_sent_by.value|default_if_none:'' }}">
             <!-- show errors -->
             {% if form.errors.quote_sent_by %}
               {%for e in form.errors.quote_sent_by %}
-              <small class="text-danger">{{e}}</small>
+                <small class="text-danger">{{e}}</small>
               {%endfor%}
             {% endif %}
           </div>
         </div>
 
-        <!-- 26.percentage_profit  -->
-        <div class="col-md-4">
+        <!-- 26.quotation_status  -->
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="quotation_status">26.quotation_status</label>
             <select class="form-control js-example-basic-single" name="quotation_status" id="quotation_status">
@@ -481,10 +511,10 @@
         </div>
 
         <!-- 27.feedback_remarks  -->
-        <div class="col-md-4">
+        <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="feedback_remarks">27. Feedback/Remarks </label>
-            <textarea class="form-control" id="feedback_remarks" rows="5" name="feedback_remarks">{{form.feedback_remarks.value}}</textarea>
+            <textarea class="form-control" id="feedback_remarks" rows="5" name="feedback_remarks">{{form.data.feedback_remarks}}</textarea>
             <p><small style="color:rgb(247, 12, 12);">(Include reason for business loss)</small></p>
             <!-- show errors -->
             {% if form.errors.feedback_remarks %}
@@ -498,13 +528,15 @@
       </div>
 
       <!-- submit btn -->
+      <!-- {{ form }} -->
       <div class="row">
-        <div class="col-md-4">
-          <button class="btn btn-success btn-lg" type="submit" id="submit_ql">Update QuoteLog</button>
+        <div class="col-md-4 border-right">
+          <button class="btn btn-primary" type="submit" id="submit_ql">Submit QuoteLog</button>
         </div>
       </div>
-      <br>
+      
     </form>
+    <br>
     <br>
   {% elif user.profile.designation == 'MANAGEMENT' %}
     <h3 style="color:red;">Unauthorized User</h3>

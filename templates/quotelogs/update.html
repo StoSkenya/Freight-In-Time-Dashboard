@@ -28,9 +28,7 @@
         {%endif%}
       </div>
       <!-- end form errors alert -->
-      <!-- row 1 -->
-      <div class="row" >
-
+      <div class="row">
         <!-- office -->
         <div class="col-md-4 border-right">
           <div class="form-group">
@@ -61,6 +59,9 @@
           </div>
         </div>
 
+      </div>
+      <!-- row 1 -->
+      <div class="row" >
         <!-- 1.  quarter -->
         <div class="col-md-4 border-right">
           <div class="form-group">
@@ -80,23 +81,18 @@
         </div>
 
         <!-- 2. quote_ref_no -->
-        <div class="col-md-4 border-right">
-          <div class="form-group">
-            <label for="quote_ref_no">3.Quote Ref No(FIT NO.)</label>
-            <input type="text" class="form-control" name="quote_ref_no" id="quote_ref_no" readonly="readonly" value="{{form.quote_ref_no.value}}">
-            <!-- show errors -->
-            {% if form.errors.quote_ref_no %}
-              {%for e in form.errors.quote_ref_no %}
-                <small class="text-danger">{{e}}</small>
-              {%endfor%}
-            {% endif %}
-          </div>
-
+        <div class="col-md-4">
+        <div class="form-group">
+          <label for="quote_ref_no">3.Quote Ref No(FIT NO.)</label>
+          <input type="text" class="form-control" name="quote_ref_no" id="quote_ref_no" value="{{form.quote_ref_no.value}}" readonly="readonly">
+          <!-- show errors -->
+          {% if form.errors.quote_ref_no %}
+          {%for e in form.errors.quote_ref_no %}
+          <small class="text-danger">{{e}}</small>
+          {%endfor%}
+          {% endif %}
         </div>
       </div>
-
-      <!-- row 2 -->
-      <div class="row" >
 
         <!-- 4.week -->
         <div class="col-md-4 border-right">
@@ -115,6 +111,12 @@
             {% endif %}
           </div>
         </div>
+      </div>
+
+      <!-- row 2 -->
+      <div class="row" >
+
+
 
         <!-- 5.business_type -->
         <div class="col-md-4 border-right">
@@ -222,7 +224,7 @@
           <div class="form-group">
             <label for="origin_port_airpot">10.Select origin Port/Airport</label>
             <select class="form-control js-example-basic-single" name="origin_port_airpot" id="origin_port_airpot">
-              <option value=" ">{{form.origin_port_airpot.value}}</option>
+              <option value="{{form.origin_port_airpot.value}}">{{form.origin_port_airpot.value}}</option>
             </select>
             <!-- show errors -->
             {% if form.errors.origin_port_airpot %}
@@ -257,7 +259,7 @@
           <div class="form-group">
             <label for="destination_port_aiport">12. Destination Port/Aiport</label>
             <select class="form-control js-example-basic-single" name="destination_port_aiport" id="destination_port_aiport"> -->
-              <option value=" ">{{form.destination_port_aiport.value}}</option>
+              <option value="{{form.origin_port_airpot.value}}">{{form.origin_port_airpot.value}}</option>
             </select>
             <!-- show errors -->
             {% if form.errors.destination_port_aiport %}
@@ -459,7 +461,9 @@
             {% endif %}
           </div>
         </div>
+      </div>
 
+      <div class="row">
         <!-- 21.name_of_sales_person  -->
         <div class="col-md-4 border-right">
           <div class="form-group">
@@ -474,10 +478,6 @@
           </div>
         </div>
 
-      </div>
-
-      <!-- row 9 -->
-      <div class="row">
         <!-- 25.quote_sent_by  -->
         <div class="col-md-4 border-right">
           <div class="form-group">
@@ -492,6 +492,7 @@
           </div>
         </div>
 
+        
         <!-- 26.quotation_status  -->
         <div class="col-md-4 border-right">
           <div class="form-group">
@@ -510,11 +511,16 @@
           </div>
         </div>
 
+
+      </div>
+
+      <!-- row 9 -->
+      <div class="row">
         <!-- 27.feedback_remarks  -->
         <div class="col-md-4 border-right">
           <div class="form-group">
             <label for="feedback_remarks">27. Feedback/Remarks </label>
-            <textarea class="form-control" id="feedback_remarks" rows="5" name="feedback_remarks">{{form.data.feedback_remarks}}</textarea>
+            <textarea class="form-control" id="feedback_remarks" rows="5" name="feedback_remarks">{{form.feedback_remarks.value}}</textarea>
             <p><small style="color:rgb(247, 12, 12);">(Include reason for business loss)</small></p>
             <!-- show errors -->
             {% if form.errors.feedback_remarks %}
@@ -550,105 +556,143 @@
 <!-- {{form}} -->
 {% endblock %}
 
-<!-- js and jquery -->
-<!-- <script> -->
 {% block domready %}
-//alert('welcome click ok to get started creating your QuoteLog');
+  <!-- <script> -->
+  // <script>
+  // show country
+  $("select.origin_country").change(function () {
+    var selectedCountry = $(this).children("option:selected").val();
+  });
 
-// show country
-$("select.origin_country").change(function () {
-  var selectedCountry = $(this).children("option:selected").val();
-  //alert("You have selected the country - " + selectedCountry);
-});
+  // enable search in select 
+  $('.js-example-basic-single').select2();
 
-// enable search in select 
-$('.js-example-basic-single').select2();
+  // profit calculator buy sell rate
+  $("#client_quote_sell_rate").on("keyup", function () {
+    var value = $(this).val();
+    var buy_rate = $("#total_buy_rate").val();
 
-// profit calculator
-$("#client_quote_sell_rate").on("keyup", function () {
-  var value = $(this).val();
-  var buy_rate = $("#total_buy_rate").val();
+    var profit = (value - buy_rate);
 
-  var profit = (value - buy_rate);
-
-  if (profit != 0) {
-    $("#absolute_profit").val(profit);
-  }
-
-  var perc_profit = ((profit / buy_rate) * 100).toFixed(2);
-
-  if (perc_profit != 0) {
-    $("#percentage_profit").val(perc_profit);
-  }
-
-
-});
-
-// profit calculator
-$("#total_buy_rate").on("keyup", function () {
-  
-  var value = $(this).val();
-  var sell_rate = $("#client_quote_sell_rate").val();
-
-  var profit = (sell_rate - value);
-
-  if (profit != 0) {
-    $("#absolute_profit").val(profit);
-  }
-
-  var perc_profit = ((profit / sell_rate) * 100).toFixed(2);
-
-  if (perc_profit != 0) {
-    $("#percentage_profit").val(perc_profit);
-  }
-});
-
-// origin country append select ports and airports
-$('#origin_country').change(function(){
-  var country_ref;
-  country_ref = $(this).val();
-  $.ajax(
-  {
-    type: "GET",
-    url: "/logs/codes/"+country_ref,
-    dataType: 'json',
-    success: function (res) {
-      console.log(res['countries']);
-      //alert(res['countries']);
-      // append responses as options
-      $("#origin_port_airpot").empty();
-      $.each(res['countries'],function(key,value){
-        $("#origin_port_airpot").append('<option value=' +value + '>' + value + '</option>');
-      });
-
-
-
-
+    if (profit != 0) {
+      $("#absolute_profit").val(profit);
     }
-  })
-});
 
-// Destination country append select ports and airports
-$('#destination_country').on('change',function(){
-  var country_ref;
-  country_ref = $(this).val();
-  $.ajax(
-  {
-    type: "GET",
-    url: "/logs/codes/"+country_ref,
-    dataType: 'json',
-    success: function (res) {
-      console.log(res['countries']);
-      //alert(res['countries']);
-      //countries = res['countries']
-      $("#destination_port_aiport").empty();
-      $.each(res['countries'],function(key,value){
-        $("#destination_port_aiport").append('<option value=' + value + '>' + value + '</option>');
-      });
+    var perc_profit = ((profit / buy_rate) * 100).toFixed(2);
 
+    if (perc_profit != 0) {
+      $("#percentage_profit").val(perc_profit +"%" );
     }
-  })
-});
+
+  });
+
+  // profit calculator by buy rate
+  $("#total_buy_rate").on("keyup", function () {
+ 
+    var value = $(this).val();
+    var sell_rate = $("#client_quote_sell_rate").val();
+
+    var profit = (sell_rate - value);
+
+    if (profit != 0) {
+      $("#absolute_profit").val(profit);
+    }
+
+    var perc_profit = ((profit / sell_rate) * 100).toFixed(2);
+
+    if (perc_profit != 0) {
+      $("#percentage_profit").val( perc_profit +"%");
+    }
+  });
+
+  // origin country append select ports and airports locods
+  $('#origin_country').change(function(){
+    var country_ref;
+    country_ref = $(this).val();
+    $.ajax(
+    {
+      type: "GET",
+      url: "/logs/codes/"+country_ref,
+      dataType: 'json',
+      success: function (res) {
+        // store responses in localStorage
+        const myRes = JSON.stringify(res);
+        localStorage.setItem("new_Res", myRes);
+        // get from localStorage
+        let newRes = JSON.parse(localStorage.getItem("new_Res"));
+        
+        $("#origin_port_airpot").empty();
+        $.each(newRes['countries'],function(key,value){
+          $("#origin_port_airpot").append('<option value=' +value + '>' + value + '</option>');
+        });
+
+      }
+    })
+  });
+
+  // Destination country append select ports and airports locodes
+  $('#destination_country').on('change',function(){
+    var country_ref;
+    country_ref = $(this).val();
+    $.ajax(
+    {
+      type: "GET",
+      url: "/logs/codes/"+country_ref,
+      dataType: 'json',
+      success: function (res) {
+        $("#destination_port_aiport").empty();
+        $.each(res['countries'],function(key,value){
+          $("#destination_port_aiport").append('<option value=' + value + '>' + value + '</option>');
+        });
+
+      }
+    })
+  });
+
+  // Restricts data selection by user
+  $(function(){
+    var dtToday = new Date();
+    // get todays month-day-year
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+
+    if(month < 10)
+      month = '0' + month.toString();
+
+    if(day < 10)
+      day = '0' + day.toString();
+
+    // the max date a user can select can not be greater than today.
+    var maxDate = year + '-' + month + '-' + day;    
+    $('#id_date_of_reciept_of_request').attr('max', maxDate);
+    //$('#id_date_of_reply_to_client').attr('max', maxDate);
+  });
+
+  // Ajax req. for sum of quotes done
+  // add +1 as an increment and create a new Quoteref
+  $(function(){
+    $.ajax(
+      {
+        type: "GET",
+        url: "{% url 'sumquotes' %}",
+        dataType: 'json',
+        success: function (res) {
+          var last_id_intcrement = 1;
+          var new_index = res['q_id'] + last_id_intcrement;
+          // empty as a qref might have been saved and may require to be 
+          // recreated.
+          $('#quote_ref_no').empty();// empty any prev item
+          // save the newly created quoteref.
+          $('#quote_ref_no').val("{{user.profile.country}}/"+new_index+"/" + {% now "Y" %});
+          
+        }
+      }
+    )
+    
+  });
+
+  //ioioi
 
 
 {% endblock %}

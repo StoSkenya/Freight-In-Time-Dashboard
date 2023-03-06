@@ -1,6 +1,5 @@
 {% extends '../../base.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
 
 {% block content %}      
 
@@ -15,9 +14,10 @@
           <br>
           <h3>F.I.T LOGIN QUOTELOG DASHBOARD</h3>
           <br>
+          {% load crispy_forms_tags %}
           <form method="POST">
             {% csrf_token %}
-            {{ login_form }}
+            {{ login_form|crispy }}
             <br>
             <br>
             <button class="btn btn-primary" type="submit">Login</button>

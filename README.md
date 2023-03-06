@@ -20,7 +20,8 @@ $ git add . && git commit -m "update" && git push origin fit-development  && git
     - Superuser
         name: fitdashboard
         gmail: fitdash@gmail.com
-        (all) pswrd: sdkwr_345362S2
+        pswrd: sdkwr_345362S2
+        (all) pswrd: 34sdkwr_345362S2
     
     - Kenya
         - Admins

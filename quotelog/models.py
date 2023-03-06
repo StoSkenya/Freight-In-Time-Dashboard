@@ -158,7 +158,7 @@ class QuoteLogdb(models.Model):
     absolute_profit = models.FloatField()
 
     # 19. percentage_profit
-    percentage_profit = models.FloatField()
+    percentage_profit = models.CharField(max_length=6)
 
     # 20. email_subject (if RFO/RFQ was recieved by mail)
     email_subject = models.TextField(null=True, blank=True)

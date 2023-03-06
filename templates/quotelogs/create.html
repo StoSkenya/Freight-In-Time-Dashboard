@@ -37,9 +37,9 @@
                 <input type="hidden" name="office" id="office" class="form-control" value="{{user.profile.office}}" >
                 <!-- show errors -->
                 {% if form.errors.office %}
-                  {%for e in form.errors.office %}
-                  <small class="text-danger">{{e}}</small>
-                  {%endfor%}
+                  {% for e in form.errors.office %}
+                    <small class="text-danger">{{e}}</small>
+                  {% endfor %}
                 {% endif %}
               </div>
             </div>
@@ -387,7 +387,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="percentage_profit">20. Percentage profit</label>
-                <input class="form-control" type="number" min="1" max="100"  id="percentage_profit" name="percentage_profit" value="{{form.percentage_profit.percentage_profit}}">
+                <input class="form-control" type="text"  id="percentage_profit" name="percentage_profit" value="{{form.percentage_profit.percentage_profit}}">
                 <!-- show errors -->
                 {% if form.errors.percentage_profit %}
                   {% for e in form.errors.percentage_profit %}
@@ -574,7 +574,7 @@
     var perc_profit = ((profit / buy_rate) * 100).toFixed(2);
 
     if (perc_profit != 0) {
-      $("#percentage_profit").val(perc_profit );
+      $("#percentage_profit").val(perc_profit +"%" );
     }
 
   });
@@ -594,7 +594,7 @@
     var perc_profit = ((profit / sell_rate) * 100).toFixed(2);
 
     if (perc_profit != 0) {
-      $("#percentage_profit").val(perc_profit);
+      $("#percentage_profit").val( perc_profit +"%");
     }
   });
 

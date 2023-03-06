@@ -48,8 +48,8 @@
             <div class="col-md-12" >
               <div class="form-group">
                 <label for="created_by" >CreatedBy</label>
-                <input type="text" class="form-control" value="{{user.FITUser.email}}" disabled>
-                <input type="hidden" name="created_by" id="created_by" class="form-control" value="{{user.FITUser.email}}" >
+                <input type="text" class="form-control" value="{{user.email}}" disabled>
+                <input type="hidden" name="created_by" id="created_by" class="form-control" value="{{user.email}}" >
                 <!-- show errors -->
                 {% if form.errors.created_by %}
                   {% for e in form.errors.created_by %}

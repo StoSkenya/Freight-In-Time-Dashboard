@@ -13,7 +13,7 @@
 $ git add . && git commit -m "update" && git push origin fit-development  && git switch main && git merge fit-development && git push origin main && git switch fit-development
 ```
 
-
+https://medium.com/@ardho/migration-and-seeding-in-django-3ae322952111
 ## TO pdf:https://pypi.org/project/django-wkhtmltopdf/
 
 ## Test Accounts

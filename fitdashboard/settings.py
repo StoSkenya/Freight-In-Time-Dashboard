@@ -105,7 +105,7 @@ if os.environ['DEV'] == "False":
                 'PORT': '5432',
             }
         }
-        print("We are in testing")
+        # print("We are in testing")
     else:
         # test db
         DATABASES = {

@@ -1,0 +1,73 @@
+[
+{
+    "model": "accounts.fituser",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$AKxp5Hhiph4Kwb4u0Ak0YO$Ur6gfTvm6puHjK+CGTg5knctxQNoyoWy4BL+kgdqRUA=",
+        "last_login": "2023-03-06T08:37:22.799Z",
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-03-06T08:22:43.597Z",
+        "email": "fitdash@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.fituser",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$THfHXJkvQLfmPTA7jLz9Xn$xMhzugfVCCCTGJTSo1UKrFVdr/D6j92MZTNODEHDl3c=",
+        "last_login": "2023-03-06T09:05:14.881Z",
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-03-06T08:31:37.352Z",
+        "email": "fitdashbrd_admin_1_kenya@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.fituser",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$umRl0n9OZh1uVpUe7nenJc$Id5tjFu0x4LKoa60mwzvodJO5aJsbJhLpNUP+MKl3hg=",
+        "last_login": "2023-03-06T09:41:54.289Z",
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-03-06T09:22:15.446Z",
+        "email": "sales_3_kenya@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.profile",
+    "pk": "a3a1aef7-b46f-464c-9d58-634a41fe79bc",
+    "fields": {
+        "user": 3,
+        "office": "FIT KENYA",
+        "country": "KE",
+        "designation": "SALES"
+    }
+},
+{
+    "model": "accounts.profile",
+    "pk": "e58bd33a-36d4-45bb-8c8c-6c07bbce782d",
+    "fields": {
+        "user": 2,
+        "office": "FIT KENYA",
+        "country": "KE",
+        "designation": "MANAGEMENT"
+    }
+}
+]

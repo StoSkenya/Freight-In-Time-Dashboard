@@ -75,12 +75,12 @@ def user_login(request):
                 login(request, user)
                 
                 if request.user.profile.designation != 'MANAGEMENT':
-                    print(request.user.profile.designation)
+                    # print(request.user.profile.designation)
                     messages.success(request, 'Your profile was updated.')
                     messages.info(request, f"You are now logged in as {email}.")
                     return redirect("home")
                 if request.user.profile.designation == 'MANAGEMENT':
-                    print(request.user.profile.designation)
+                    # print(request.user.profile.designation)
                     messages.success(request, 'Your profile was updated.')
                     messages.info(request, f"You are now logged in as {email}.")
                     return redirect('management')
@@ -110,7 +110,7 @@ def home(request):
 
     # save analytics data in value counts
     context['value_counts'] = analytics_cls.val_counts()
-    print(context)
+    # print(context)
 
     return render(request, 'home/home_normal.html',context )
 

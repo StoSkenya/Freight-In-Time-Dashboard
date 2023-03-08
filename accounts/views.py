@@ -134,6 +134,7 @@ def get_sum_quotes(request):
     # print(f"Office coount: {}")
     
     if request.method == 'GET':
+        print(int(analytics_cls.sum_office()))
         context['q_id'] = int(analytics_cls.sum_office())
     return HttpResponse(json.dumps(context), content_type="application/json")
 

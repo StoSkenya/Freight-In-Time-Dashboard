@@ -30,10 +30,12 @@ def quotelog_create(request):
     """
 
     context = {}
-
+    last_id = QuoteLogdb.objects.last().id
     form = CreateQuoteLogForm(request.POST or None)
     # # check if form data is valid
     if form.is_valid():
+        # get data
+        
         # save the form data to model
         form.save()
         messages.success(request, 'Form submission successful')
@@ -52,7 +54,7 @@ def quotelog_create(request):
 
 
 @login_required(login_url='login')
-def update_quotelogs(request,id):
+def update_ql(request,id):
     # dictionary for initial data with
     # field names as keys
     context ={}
@@ -69,7 +71,7 @@ def update_quotelogs(request,id):
         form.save()
         messages.success(request, 'QuoteLog update successful')
         return redirect('logs:view_ql')
-        # return reverse_lazy('quotelogs:view_quotelogs')
+        # return reverse_lazy('ql:view_ql')
  
     # add form dictionary to context
     context["form"] = form
@@ -160,10 +162,5 @@ def get_codes(request, country):
 
     # print(context)
     return HttpResponse(json.dumps(context), content_type="application/json")
-
-
-
-
-
 
 

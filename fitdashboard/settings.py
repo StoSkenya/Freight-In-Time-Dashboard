@@ -14,8 +14,13 @@ from pathlib import Path
 from decouple import config
 from django.core.management.utils import get_random_secret_key
 import os
-from dotenv import load_dotenv
-load_dotenv()
+import environ
+
+# Initialise environment variables
+env = environ.Env()
+
+environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -84,42 +89,32 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'fitdashboard.wsgi.application'
-
 # settings by env file
-if os.environ['DEV'] == "False":
+if env('DEV') == "False":
     # Database
     # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
     # Swith to postgresql-local
-    if os.environ['DB'] == "PSQL":        
-        passwrd = os.environ["POSTGRESQL_PSWRD"]
+    if env('DB') == "PSQL":        
+        passwrd = env("POSTGRESQL_PSWRD")
         # print(passwrd)
         DATABASES = {
             
             'default': {
                 'ENGINE': 'django.db.backends.postgresql',
-                'NAME': 'FreightInTime_db_',
+                'NAME': 'freightintimedb',
                 'USER': 'postgres' ,
                 'PASSWORD': f'{passwrd}' ,
-                'HOST': '127.0.0.1',
+                'HOST': 'localhost',
                 'PORT': '5432',
             }
         }
         # print("We are in testing")
-    else:
-        # test db
-        DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME':os.path.join(BASE_DIR ,'db.sqlite3'),
-        }
-    }
-        
 
-
-if os.environ['DEV'] == "True":
-    # set dev values for db and static
-    print("We are in develompent!")
+    
+# if env('DEV') == "True":
+#     # set dev values for db and static
+#     print("We are in develompent!")
     
 
 

@@ -1,0 +1,127 @@
+[
+{
+    "model": "accounts.fituser",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$AKxp5Hhiph4Kwb4u0Ak0YO$Ur6gfTvm6puHjK+CGTg5knctxQNoyoWy4BL+kgdqRUA=",
+        "last_login": "2023-03-08T08:14:55.795Z",
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-03-06T08:22:43.597Z",
+        "email": "fitdash@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.fituser",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$THfHXJkvQLfmPTA7jLz9Xn$xMhzugfVCCCTGJTSo1UKrFVdr/D6j92MZTNODEHDl3c=",
+        "last_login": "2023-03-08T08:19:51.383Z",
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-03-06T08:31:37.352Z",
+        "email": "fitdashbrd_admin_1_kenya@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.fituser",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$umRl0n9OZh1uVpUe7nenJc$Id5tjFu0x4LKoa60mwzvodJO5aJsbJhLpNUP+MKl3hg=",
+        "last_login": "2023-03-08T09:37:06.141Z",
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-03-06T09:22:15.446Z",
+        "email": "sales_3_kenya@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.fituser",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$7ujPlJGOksGSHuFznEtMbM$65Pjs04fHF36ak7O4aSJjXsL7Gg4aNBv3KRg6DvDgCs=",
+        "last_login": "2023-03-08T09:01:33.452Z",
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-03-08T09:01:03.593Z",
+        "email": "fitdashbrd_admin_1_uganda@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.fituser",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$5oiED3TmeFkH1spgZeeC8b$vTq47y2gh7sdtdv7TL2dBJXYGUSpzf7LqecJxLYJ3oA=",
+        "last_login": "2023-03-08T09:36:49.669Z",
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-03-08T09:02:24.730Z",
+        "email": "sales_3_uganda@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.profile",
+    "pk": "2741837f-3d4c-4465-ab86-4c69775c500e",
+    "fields": {
+        "user": 4,
+        "office": "FIT UGANDA",
+        "country": "UG",
+        "designation": "MANAGEMENT"
+    }
+},
+{
+    "model": "accounts.profile",
+    "pk": "897c9b4b-0bae-4739-9849-279a9d32cf28",
+    "fields": {
+        "user": 5,
+        "office": "FIT UGANDA",
+        "country": "UG",
+        "designation": "SALES"
+    }
+},
+{
+    "model": "accounts.profile",
+    "pk": "a3a1aef7-b46f-464c-9d58-634a41fe79bc",
+    "fields": {
+        "user": 3,
+        "office": "FIT KENYA",
+        "country": "KE",
+        "designation": "SALES"
+    }
+},
+{
+    "model": "accounts.profile",
+    "pk": "e58bd33a-36d4-45bb-8c8c-6c07bbce782d",
+    "fields": {
+        "user": 2,
+        "office": "FIT KENYA",
+        "country": "KE",
+        "designation": "MANAGEMENT"
+    }
+}
+]

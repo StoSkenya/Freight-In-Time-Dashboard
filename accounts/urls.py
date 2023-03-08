@@ -10,4 +10,5 @@ urlpatterns = [
     path('create_profile',create_profile,name='create_profile'),
     path("logout",logout_view,name="logout"),
     path('sumquotes', get_sum_quotes,name='sumquotes'),  
+
 ]

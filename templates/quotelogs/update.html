@@ -669,30 +669,5 @@
     //$('#id_date_of_reply_to_client').attr('max', maxDate);
   });
 
-  // Ajax req. for sum of quotes done
-  // add +1 as an increment and create a new Quoteref
-  $(function(){
-    $.ajax(
-      {
-        type: "GET",
-        url: "{% url 'sumquotes' %}",
-        dataType: 'json',
-        success: function (res) {
-          var last_id_intcrement = 1;
-          var new_index = res['q_id'] + last_id_intcrement;
-          // empty as a qref might have been saved and may require to be 
-          // recreated.
-          $('#quote_ref_no').empty();// empty any prev item
-          // save the newly created quoteref.
-          $('#quote_ref_no').val("{{user.profile.country}}/"+new_index+"/" + {% now "Y" %});
-          
-        }
-      }
-    )
-    
-  });
-
-  //ioioi
-
 
 {% endblock %}

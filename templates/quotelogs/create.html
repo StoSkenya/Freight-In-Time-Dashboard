@@ -78,7 +78,7 @@
             </div>
     
             <!-- 2. quote_ref_no -->
-            <div class="col-md-4 border-right">
+            <div class="col-md-4">
               <div class="form-group">
                 <label for="quote_ref_no">3.Quote Ref No(FIT NO.)</label>
                 <input type="text" class="form-control" name="quote_ref_no" id="quote_ref_no" readonly="readonly">
@@ -671,15 +671,16 @@
         url: "{% url 'sumquotes' %}",
         dataType: 'json',
         success: function (res) {
-          var last_id_intcrement = 1;
-          var new_index = res['q_id'] + last_id_intcrement;
+          console.log(res)
+   
+          var new_index = res['q_id'];
           // empty as a qref might have been saved and may require to be 
           // recreated.
           $('#quote_ref_no').empty();// empty any prev item
           // save the newly created quoteref.
           $('#quote_ref_no').val("{{user.profile.country}}/"+new_index+"/" + {% now "Y" %});
-          
-        }
+          console.log("new quote id created")
+        } 
       }
     )
     

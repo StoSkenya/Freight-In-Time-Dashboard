@@ -95,8 +95,8 @@ def user_login(request):
 
 @login_required(login_url='login')
 def home(request):
-    context = {} 
-     # get current logged in user data
+    context = {}
+    # get current logged in user data
     context['current_user'] = request.user 
 
     # get all db data
@@ -110,6 +110,7 @@ def home(request):
 
     # save analytics data in value counts
     context['value_counts'] = analytics_cls.val_counts()
+    print(context)
 
     return render(request, 'home/home_normal.html',context )
 

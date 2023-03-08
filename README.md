@@ -1,7 +1,7 @@
 
 # Freight In Time QuoteLogs Dashboard
 
-# TODO:
+# TODO: DONT PUSH FROM FIT COMP.
 
 
 
@@ -10,8 +10,7 @@
 ## Super command:  
 
 ```r
-
-$ git add . && git commit -m "update" && git push origin fit-development  && git switch main && git merge fit-development && git push origin main && git switch fit-development
+$ git add . && git commit -m "update personal computer" && git push origin fit-development  && git switch main && git merge fit-development && git push origin main && git switch fit-development
 ```
 
 https://medium.com/@ardho/migration-and-seeding-in-django-3ae322952111

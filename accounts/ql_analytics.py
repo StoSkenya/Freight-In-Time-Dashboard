@@ -34,7 +34,7 @@ class QLAnalytics:
     
     def val_counts(self):
         # Quotation Status
-        Q_S = ['Sent','Won','Pending','Lost']
+        Q_S = ['SENT','WON','PENDING','LOST']
 
         v_counts = {}
         
@@ -46,7 +46,7 @@ class QLAnalytics:
             current_df_qs = list(df["quotation_status"])
             # print(current_df_qs)
             for i in  current_df_qs:
-                if i == 'Won':
+                if i == 'WON':
                     df_won = df[df["quotation_status"] == i]
                     # print(df["quotation_status"])
                     v_counts['FreightModeWonQuotes'] = df_won['freight_mode'].value_counts().idxmax()
@@ -54,8 +54,15 @@ class QLAnalytics:
                     
                     df_new = df_won[['quarter','percentage_profit']]
                     df_new = df_new.groupby('quarter', as_index=False).sum()
+
+
                     v_counts['new_quaters'] = list(df_new['quarter'].values)
-                    v_counts['new_profits'] = list(df_new['percentage_profit'].values)
+
+                    # print(list(df_new['percentage_profit'].values))
+                    profits = list(df_new['percentage_profit'].values)
+                    
+                    print(profits)
+                    v_counts['new_profits'] = profits
 
                     dates_taken_to_reply = mode( (df['date_of_reply_to_client'] - df['date_of_reciept_of_request'] ) / np.timedelta64(1, 'D') )
                     v_counts['datesDiff'] = int(dates_taken_to_reply)
@@ -94,7 +101,7 @@ class QLAnalytics:
                     _shape = int( shape_o + 1)
                     return _shape
                 
-                if _shape == 0:
+                if shape_o == 0:
                     first_shape = 0
                     return first_shape
 
@@ -104,7 +111,7 @@ class QLAnalytics:
 
 
        
-if __name__ == '__main__':
-    df = QLAnalytics('FIT NAIROBI',qdb)
-    df.kenya_df()    
+# if __name__ == '__main__':
+#     df = QLAnalytics('FIT NAIROBI',qdb)
+#     df.kenya_df()    
         

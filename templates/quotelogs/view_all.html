@@ -114,13 +114,13 @@
                                 <td>{{ i.name_of_sales_person }}</td>
                                 <td>{{ i.quote_sent_by }}</td>
                                 {% if i.quotation_status == 'PENDING' %}
-                                <td style="background-color: brown;">{{ i.quotation_status }}</td>
+                                <td style="background-color: rgb(101, 255, 191);">{{ i.quotation_status }}</td>
                                 {% elif i.quotation_status == 'SENT' %}
                                 <td style="background-color: rgb(105, 105, 243);">{{ i.quotation_status }}</td>
                                 {% elif i.quotation_status == 'WON' %}
                                 <td style="background-color: green;">{{ i.quotation_status }}</td>
                                 {% elif i.quotation_status == 'LOST' %}
-                                <td style="background-color: red;">{{ i.quotation_status }}</td>
+                                <td style="background-color: rgb(255, 96, 96);">{{ i.quotation_status }}</td>
                                 {% else %}
                                 <td>{{ i.quotation_status }}</td>
                                 {% endif %}

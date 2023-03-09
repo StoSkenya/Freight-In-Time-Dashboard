@@ -304,32 +304,44 @@
         return "rgb(" + r + "," + g + "," + b + ")";
     };
     
-    var lenArray = {{value_counts.new_quaters|safe}}.length;
+    var lenArray = "{{value_counts.new_quaters|safe}}".length;
     
     var colorsArr = [],i=0;
     for(i; i < lenArray; i++){ 
         colorsArr.push(dynamicColors()); 
     } 
     var element = document.getElementById('myChart'); 
-    
-    if (typeof(element) != 'undefined' && element != null)
-    {
 
+
+    if (typeof(element) != 'undefined' && element != null) {
         let ctx = element.getContext('2d');
 
-        var myChart = new Chart(ctx, { 
-            type: 'bar' , data: { labels: {{value_counts.new_quaters|safe}}, 
-            datasets: [{ label: '% profits by Quarter (Won Quotes)' , 
-            data: {{value_counts.new_profits}}, 
-            backgroundColor: colorsArr, borderWidth: 1 }] }, 
-            options: { 
-                scales: { 
-                    y: { 
-                        beginAtZero: true 
-                    } 
-                } 
-            } 
-        }); 
+        let profits = "{{value_counts.new_profits|safe}}";
+        let labels = "{{value_counts.new_quaters|safe}}";
+        console.log(labels);
+        console.log(profits);
+
+    
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '% profits by Quarter (Won Quotes)',
+                    data: profits,
+                    backgroundColor: colorsArr,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     }
     
 }); 

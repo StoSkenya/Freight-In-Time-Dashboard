@@ -10,15 +10,15 @@ services:
     ports:
       -8000:8000
 
-db:
-  image: 
-    -postgres:13.0-alpine
-  volums:
-    - fitapp_postgress_data:/var/lib/postgresql/data/
-  environment:
-    - POSTGRES_USER=fitapp
-    - POSTGRES_PASSWORD=fitapp_2023
-    - POSTGRES_DB=hello_django_dev2023
+# db:
+#   image: 
+#     -postgres:13.0-alpine
+#   volums:
+#     - fitapp_postgress_data:/var/lib/postgresql/data/
+#   environment:
+#     - POSTGRES_USER=fitapp
+#     - POSTGRES_PASSWORD=fitapp_2023
+#     - POSTGRES_DB=hello_django_dev2023
 
-volumes:
-  fitapp_postgress_data:
+# volumes:
+#   fitapp_postgress_data:

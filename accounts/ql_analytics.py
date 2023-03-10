@@ -60,7 +60,6 @@ class QLAnalytics:
 
                     # print(list(df_new['percentage_profit'].values))
                     profits = list(df_new['percentage_profit'].values)
-                    
                     print(profits)
                     v_counts['new_profits'] = profits
 

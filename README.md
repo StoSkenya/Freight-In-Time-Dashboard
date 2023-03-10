@@ -34,7 +34,6 @@ https://medium.com/@ardho/migration-and-seeding-in-django-3ae322952111
             1.sales_3_kenya@gmail.com
             2.pricing_3_kenya@gmail.com
  
-    
     - Uganda
        - Admins
             1.fitdashbrd_admin_1_uganda@gmail.com
@@ -45,7 +44,6 @@ https://medium.com/@ardho/migration-and-seeding-in-django-3ae322952111
             1.sales_3_uganda@gmail.com
             2.pricing_3_uganda@gmail.com
  
-
     - Tanzania
        - Admins
             1.fitdashbrd_admin_1_tanzania@gmail.com
